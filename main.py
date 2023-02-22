@@ -1,4 +1,4 @@
-from latex import *
+import latex
 from manim import *
 
 

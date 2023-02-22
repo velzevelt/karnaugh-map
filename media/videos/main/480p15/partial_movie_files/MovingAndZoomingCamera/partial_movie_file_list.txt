@@ -1,0 +1,4 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/velz/Документы/karnaugh-map/media/videos/main/480p15/partial_movie_files/MovingAndZoomingCamera/4250421301_1376861111_1066944316.mp4'
+file 'file:/home/velz/Документы/karnaugh-map/media/videos/main/480p15/partial_movie_files/MovingAndZoomingCamera/3939072366_244794568_3009941896.mp4'
+file 'file:/home/velz/Документы/karnaugh-map/media/videos/main/480p15/partial_movie_files/MovingAndZoomingCamera/91284367_4214380531_2669591090.mp4'
