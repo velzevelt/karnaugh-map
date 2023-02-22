@@ -1,0 +1,2 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/velz/Документы/karnaugh-map/media/videos/main/480p15/partial_movie_files/PointMovingOnShapes/4266129954_2041253597_223132457.mp4'
