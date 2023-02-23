@@ -4,7 +4,7 @@ import numpy as np
 
 def make_truth_table(var_qty: int) -> list:
     column_max_size = 2 ** var_qty
-    result = np.zeros(shape=(var_qty, column_max_size), dtype=int)
+    result = np.zeros(shape=(column_max_size, var_qty), dtype=int)
     for i in range(var_qty):
         counter = 0
         temp = 0
@@ -12,21 +12,18 @@ def make_truth_table(var_qty: int) -> list:
             if counter == i + 1:
                 counter = 0
                 temp = 1 if temp == 0 else 0
-            result[i][j] = temp
+            result[j][i] = temp
             counter += 1
     
     return result
 
 # t = make_truth_table(2)
-# np.transpose(t)
 # print(t)
 
 
 class MathTableExampe(Scene):
     def construct(self):
         table_data = make_truth_table(var_qty=2)
-        np.transpose(table_data)
-        
         table = MathTable(table_data,
             include_outer_lines=True
             )
