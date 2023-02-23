@@ -21,10 +21,16 @@ def make_truth_table(var_qty: int) -> list:
 # print(t)
 
 
-class MathTableExampe(Scene):
+class IntegerTableExampe(Scene):
     def construct(self):
         table_data = make_truth_table(var_qty=2)
-        table = MathTable(table_data,
-            include_outer_lines=True
+        table = IntegerTable(table_data,
+            include_outer_lines=True,
+            top_left_entry=Text("N"),
+            col_labels=[Text('a'), Text('b')],
+            row_labels=[MathTex(str(i)) for i in range(4)]
+            # col_labels=[Text('a'), Text('b'), Text('c'), Text('d')],
+            # row_labels=[]
             )
+        table.scale(0.4)
         self.add(table)
