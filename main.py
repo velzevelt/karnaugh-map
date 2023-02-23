@@ -1,13 +1,21 @@
-import latex
 from manim import *
+import numpy as np
 
 
-class MovingAndZoomingCamera(MovingCameraScene):
-    def construct(self):
-        # Write equations
-        equation = MathTex("2x^2-5x+2", "=", "(x-2)(2x-1)")
+def make_truth_table(var_qty: int) -> list:
+    column_max_size = 2 ** var_qty
+    result = np.zeros(shape=(var_qty, column_max_size), dtype=int)
+    for i in range(var_qty):
+        counter = 0
+        temp = 0
+        for j in range(column_max_size):
+            if counter == i + 1:
+                counter = 0
+                temp = 1 if temp == 0 else 0
+            result[i][j] = temp
+            counter += 1
+    
+    return result
 
-        self.add(equation)
-        self.play(self.camera.frame.animate.move_to(equation[0]).set(width=equation[0].width*2))
-        self.wait(0.3)
-        self.play(self.camera.frame.animate.move_to(equation[2]).set(width=equation[2].width*2))
+
+print(make_truth_table(2))
