@@ -26,7 +26,6 @@ PRE = """\\usepackage[english, russian]{babel}
 \\usepackage[T2A, T1]{fontenc}
 \\usepackage{amsmath}
 \\usepackage{amssymb}
-\\usepackage{dsfont}
 \\usepackage{setspace}
 \\usepackage{tipa}
 \\usepackage{relsize}
@@ -40,6 +39,16 @@ PRE = """\\usepackage[english, russian]{babel}
 \\usepackage{microtype}
 \\DisableLigatures{encoding = *, family = * }
 \\linespread{1}
+
+\\begin{document}
+
+
+\\begin{otherlanguage*}{russian}
+
+\\end{otherlanguage*}
+
+
+\\end{document}
 """
 
 MY_TEMPLATE = TexTemplate(documentclass='\\documentclass{article}', preamble=PRE)
@@ -47,16 +56,6 @@ MY_TEMPLATE = TexTemplate(documentclass='\\documentclass{article}', preamble=PRE
 
 
 
-"""
-\\begin{otherlanguage*}{russian}
-
-    В начале июля, в чрезвычайно жаркое время, под вечер, один молодой человек вышел из своей каморки, 
-    которую нанимал от жильцов в С — м переулке, на улицу и медленно, как бы в нерешимости, отправился к К — ну мосту
-    
-\\end{otherlanguage*}
-
-A word and another \\foreignlanguage{russian}{слово}
-"""
 
 # class IntegerTableExampe(Scene):
 #     def construct(self):
@@ -78,13 +77,12 @@ A word and another \\foreignlanguage{russian}{слово}
 class FunctionNormalForms(Scene):
     def construct(self):
         # title_1 = Title('Нормальные формы в логике')
-        title_1 = Title()
-        title_1.tex_template = MY_TEMPLATE
-        title_1.tex_string = 'test'
+        title_1 = Title('test', tex_template=MY_TEMPLATE)
         
         text_1 = 'Формула в булевой логике может быть записана в дизъюнктивной и в конъюнктивной нормальной форме. Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму'
         # tex_1 = Tex(text_1)
 
-        self.play(FadeIn(title_1))
+        self.add(title_1)
+        # self.play(FadeIn(title_1))
         # self.play(FadeIn(tex_1))
-        self.wait()
+        # self.wait()
