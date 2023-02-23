@@ -18,4 +18,10 @@ def make_truth_table(var_qty: int) -> list:
     return result
 
 
-print(make_truth_table(2))
+class MathTableExampe(Scene):
+    def construct(self):
+        table_data = make_truth_table(var_qty=2)
+        table = MathTable(table_data,
+            include_outer_lines=True
+            )
+        self.add(table)
