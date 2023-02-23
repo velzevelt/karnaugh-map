@@ -34,7 +34,6 @@ PRE = """\\usepackage[english, russian]{babel}
 \\usepackage{calligra}
 \\usepackage{wasysym}
 \\usepackage{ragged2e}
-\\usepackage{physics}
 \\usepackage{xcolor}
 \\usepackage{microtype}
 \\DisableLigatures{encoding = *, family = * }
@@ -42,11 +41,15 @@ PRE = """\\usepackage[english, russian]{babel}
 
 \\begin{document}
 
+\\begin{center}
 
-\\begin{otherlanguage*}{russian}
 
-\\end{otherlanguage*}
+\\begin{otherlanguage}{russian}
 
+\\end{otherlanguage}
+
+
+\\end{center}
 
 \\end{document}
 """
