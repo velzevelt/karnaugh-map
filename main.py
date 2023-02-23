@@ -21,10 +21,7 @@ def make_truth_table(var_qty: int) -> list:
 def get_rand_function_result(var_qty: int) -> list:
     return np.random.randint(2, size=2**var_qty)
 
-
-DOC_START = """\\documentclass{article}
-
-\\usepackage[english, russian]{babel}
+PRE = """\\usepackage[english, russian]{babel}
 \\usepackage[utf8]{inputenc}
 \\usepackage[T2A, T1]{fontenc}
 \\usepackage{amsmath}
@@ -43,19 +40,11 @@ DOC_START = """\\documentclass{article}
 \\usepackage{microtype}
 \\DisableLigatures{encoding = *, family = * }
 \\linespread{1}
-
-\\begin{document}
-
-
-\\begin{otherlanguage*}{russian}
-
-    
-\\end{otherlanguage*}
-
-
-\\end{document}
-
 """
+
+MY_TEMPLATE = TexTemplate(documentclass='\\documentclass{article}', preamble=PRE)
+
+
 
 
 """
@@ -89,8 +78,10 @@ A word and another \\foreignlanguage{russian}{слово}
 class FunctionNormalForms(Scene):
     def construct(self):
         # title_1 = Title('Нормальные формы в логике')
-        TexTemplate()
-        title_1 = Title(DOC_START, tex_environment='otherlanguage*')
+        title_1 = Title()
+        title_1.tex_template = MY_TEMPLATE
+        title_1.tex_string = 'test'
+        
         text_1 = 'Формула в булевой логике может быть записана в дизъюнктивной и в конъюнктивной нормальной форме. Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму'
         # tex_1 = Tex(text_1)
 
