@@ -19,7 +19,7 @@ def make_truth_table(var_qty: int) -> list:
 
 
 def get_rand_function_result(var_qty: int) -> list:
-    return np.random.randint(2, size=var_qty**2)
+    return np.random.randint(2, size=2**var_qty)
 
 
 class IntegerTableExampe(Scene):
