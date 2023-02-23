@@ -17,10 +17,16 @@ def make_truth_table(var_qty: int) -> list:
     
     return result
 
+# t = make_truth_table(2)
+# np.transpose(t)
+# print(t)
+
 
 class MathTableExampe(Scene):
     def construct(self):
         table_data = make_truth_table(var_qty=2)
+        np.transpose(table_data)
+        
         table = MathTable(table_data,
             include_outer_lines=True
             )
