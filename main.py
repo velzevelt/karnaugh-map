@@ -21,13 +21,37 @@ def make_truth_table(var_qty: int) -> list:
 def get_rand_function_result(var_qty: int) -> list:
     return np.random.randint(2, size=2**var_qty)
 
+
 PRE = r"""
-\usepackage[russian, english]{babel}
-\usepackage[T2A, T1]{fontenc}
+\usepackage[english, russian]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[T2A, T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{tipa}
+\usepackage{relsize}
+\usepackage{textcomp}
+\usepackage{mathrsfs}
+\usepackage{calligra}
+\usepackage{wasysym}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage{microtype}
+\DisableLigatures{encoding = *, family = * }
+\linespread{1}
+
+\begin{document}
+
+\begin{center}
+placeholder
+
+\end{center}
+
+\end{document}
 """
 
-MY_TEMPLATE = TexTemplate(documentclass=r'\documentclass{article}', preamble=PRE)
+MY_TEMPLATE = TexTemplate(documentclass=r'\documentclass{article}', preamble=PRE, placeholder_text='placeholder')
 
 
 
@@ -55,9 +79,14 @@ class FunctionNormalForms(Scene):
         title_1 = Title('Нормальные формы в логике', tex_template=MY_TEMPLATE)
         
         text_1 = 'Формула в булевой логике может быть записана в дизъюнктивной и в конъюнктивной нормальной форме. Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму'
-        # tex_1 = Tex(text_1)
+        # tex_1 = Tex(text_1, tex_template=MY_TEMPLATE)
+        tex_1 = Tex('test', tex_template=MY_TEMPLATE)
+        # tex_1.font_size = 30.0
+        # tex_1.next_to(title_1, direction=DOWN)
 
         self.add(title_1)
+        self.add(tex_1)
+
         # self.play(FadeIn(title_1))
         # self.play(FadeIn(tex_1))
         # self.wait()
