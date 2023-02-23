@@ -17,20 +17,22 @@ def make_truth_table(var_qty: int) -> list:
     
     return result
 
-# t = make_truth_table(2)
-# print(t)
+t = make_truth_table(2)
+t = np.append(t, 0, axis=1)
+print(t)
 
 
 class IntegerTableExampe(Scene):
     def construct(self):
-        table_data = make_truth_table(var_qty=2)
+        var_qty = 2
+        column_size = 2 ** var_qty
+
+        table_data = make_truth_table(var_qty)
         table = IntegerTable(table_data,
             include_outer_lines=True,
             top_left_entry=Text("N"),
-            col_labels=[Text('a'), Text('b')],
-            row_labels=[MathTex(str(i)) for i in range(4)]
-            # col_labels=[Text('a'), Text('b'), Text('c'), Text('d')],
-            # row_labels=[]
+            col_labels=[Text('a'), Text('b'), Text('F')],
+            row_labels=[MathTex(str(i)) for i in range(column_size)]
             )
         table.scale(0.4)
         self.add(table)
