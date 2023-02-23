@@ -40,15 +40,6 @@ PRE = r"""
 \usepackage{microtype}
 \DisableLigatures{encoding = *, family = * }
 \linespread{1}
-
-\begin{document}
-
-\begin{center}
-placeholder
-
-\end{center}
-
-\end{document}
 """
 
 MY_TEMPLATE = TexTemplate(documentclass=r'\documentclass{article}', preamble=PRE, placeholder_text='placeholder')
@@ -78,15 +69,14 @@ class FunctionNormalForms(Scene):
     def construct(self):
         title_1 = Title('Нормальные формы в логике', tex_template=MY_TEMPLATE)
         
-        text_1 = 'Формула в булевой логике может быть записана в дизъюнктивной и в конъюнктивной нормальной форме. Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму'
-        # tex_1 = Tex(text_1, tex_template=MY_TEMPLATE)
-        tex_1 = Tex('test', tex_template=MY_TEMPLATE)
-        # tex_1.font_size = 30.0
-        # tex_1.next_to(title_1, direction=DOWN)
+        text_1 = '<span>Формула в булевой логике может быть записана в дизъюнктивной и в конъюнктивной нормальной форме. Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму</span>'
+        text_1 = MarkupText(text_1, justify=True)
+        text_1.font_size = 24
+        # text_1.next_to(title_1, direction=DOWN)
 
-        self.add(title_1)
-        self.add(tex_1)
+        # self.add(title_1)
+        # self.add(text_1)
 
-        # self.play(FadeIn(title_1))
-        # self.play(FadeIn(tex_1))
-        # self.wait()
+        self.play(FadeIn(title_1))
+        self.play(FadeIn(text_1))
+        self.wait()
