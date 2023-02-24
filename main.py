@@ -109,17 +109,17 @@ class DisjunctiveNormalForm(Scene):
         text_2.next_to(text_1, DOWN)
         text_3.next_to(text_2, DOWN)
 
-        example = r'A lor B'
-        test = Tex(example)
-        test.show()
+        example = r'${A\lor B}$ \\ ${\displaystyle (A\land B)\lor {\overline {A}}}$ \\ ${\displaystyle (A\land B\land {\overline {C}})\lor ({\overline {D}}\land E\land F)\lor (C\land D)\lor B}$'
+        example = Tex(example)
 
-        # self.wait()
-        # self.play(FadeIn(title_1))
-        # self.wait()
-        # self.play(AddTextLetterByLetter(text_1, run_time=6))
-        # self.wait()
-        # self.play(AddTextLetterByLetter(text_2, run_time=2))
-        # self.wait()
-        # self.play(AddTextLetterByLetter(text_3, run_time=2))
-        # self.wait()
-        # self.play(FadeOut(text_1, text_2, text_3))
+        self.wait()
+        self.play(FadeIn(title_1))
+        self.wait()
+        self.play(AddTextLetterByLetter(text_1, run_time=6))
+        self.wait()
+        self.play(AddTextLetterByLetter(text_2, run_time=2))
+        self.wait()
+        self.play(AddTextLetterByLetter(text_3, run_time=2))
+        self.wait()
+        title_1.text
+        self.play(FadeOut(text_1, text_2, text_3))
