@@ -58,23 +58,6 @@ PRE = r"""
 MY_TEMPLATE = TexTemplate(preamble=PRE)
 
 
-# class IntegerTableExample(Scene):
-#     def construct(self):
-#         var_qty = 2
-#         column_size = 2 ** var_qty
-#         function_result = [0, 0, 1, 1]
-#         table_data = make_truth_table(var_qty)
-#         table_data = np.c_[table_data, function_result]
-
-#         table = IntegerTable(table_data,
-#             include_outer_lines=True,
-#             top_left_entry=Text("N"),
-#             col_labels=[Text('a'), Text('b'), Text('F')],
-#             row_labels=[MathTex(str(i)) for i in range(column_size)]
-#             )
-#         table.scale(0.4)
-#         self.add(table)
-
 class FunctionNormalForms(Scene):
     def construct(self):
         
@@ -201,3 +184,22 @@ class DisjunctiveNormalForm(Scene):
         self.wait()
         self.play(Write(transition_1, run_time=8.0))
         self.wait()
+
+
+class KarnaughMap(Scene):
+    def construct(self):
+        title_1 = Title('Карты Карно', tex_template=MY_TEMPLATE)
+        var_qty = 4
+        column_size = 2 ** var_qty
+        function_result = get_rand_function_result(var_qty)
+        table_data = make_truth_table(var_qty)
+        table_data = np.c_[table_data, function_result]
+
+        table = IntegerTable(table_data,
+            include_outer_lines=True,
+            top_left_entry=Text("N"),
+            col_labels=[Text('A'), Text('B'), Text('C'), Text('D'), Text('F')],
+            row_labels=[MathTex(str(i)) for i in range(column_size)]
+            )
+        table.scale(0.4)
+        self.add(table)
