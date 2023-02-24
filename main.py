@@ -212,26 +212,22 @@ class KarnaughMap(Scene):
         table.scale(0.5)
         
         # table.next_to(title_1, DOWN, buff=0.1)
-        line = Line(UP + LEFT, DOWN + RIGHT)
-        line.stroke_width = 1
-        line.set_length(0.5)
 
-        # test = MobjectTable([Tex('test', line)])
         t_1 = Tex('$X_{2}$')
         t_2 = Tex('$X_{1}$')
         t_1.rotate(PI / 4)
         t_2.rotate(PI / 4)
 
-        test = MobjectTable([t_1, t_2], line_config={'stroke_width': 1.3},
+        top_left = MobjectTable([t_1, t_2], line_config={'stroke_width': 1.3},
             v_buff=0.4,
             h_buff=0.6,
         )
-        test.rotate(-PI / 4)
+        top_left.rotate(-PI / 4)
 
         karnaugh_map = IntegerTable([[0, 0], [1, 1]], include_outer_lines=True,
             col_labels=[Tex(0), Tex(1)],
             row_labels=[Tex(0), Tex(1)],
-            top_left_entry=test,
+            top_left_entry=top_left,
             v_buff=0.4,
             h_buff=0.6,
             line_config={'stroke_width': 1}
