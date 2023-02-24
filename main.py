@@ -2,6 +2,18 @@ from manim import *
 import numpy as np
 
 
+
+def make_text(text, font_size, width_from: MarkupText) -> MarkupText:
+    if width_from:
+        res = MarkupText(text)
+        res.font_size = font_size
+        res.width = width_from.width
+    else:
+        res = MarkupText(text)
+        res.font_size = font_size
+    return res
+
+
 def make_truth_table(var_qty: int) -> list:
     column_max_size = 2 ** var_qty
     result = np.zeros(shape=(column_max_size, var_qty), dtype=int)
@@ -70,11 +82,8 @@ class FunctionNormalForms(Scene):
         
         text_1 = 'Формула в булевой логике может быть записана в <span foreground="yellow">дизъюнктивной</span> и в <span foreground="yellow">конъюнктивной</span> нормальной форме.'
         text_2 = 'Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму.'
-        text_1 = MarkupText(text_1)
-        text_2 = MarkupText(text_2)
-        text_1.font_size = 24
-        text_2.font_size = 24
-        text_2.width = text_1.width
+        text_1 = make_text(text_1, font_size=24, width_from=None)
+        text_2 = make_text(text_2, font_size=24, width_from=text_1)
 
         text_2.next_to(text_1, DOWN)
 
@@ -98,14 +107,9 @@ class DisjunctiveNormalForm(Scene):
         text_1 = 'Дизъюнктивная нормальная форма (ДНФ) в булевой логике — нормальная форма, в которой булева формула имеет вид дизъюнкции конъюнкций литералов. Любая булева формула может быть приведена к ДНФ.'
         text_2 = 'Для этого можно использовать <span foreground="yellow">закон двойного отрицания, закон де Моргана, закон дистрибутивности.</span>'
         text_3 = 'Дизъюнктивная нормальная форма удобна для автоматического доказательства теорем.'
-        text_1 = MarkupText(text_1)
-        text_2 = MarkupText(text_2)
-        text_3 = MarkupText(text_3)
-        text_1.font_size = 24
-        text_2.font_size = 24
-        text_3.font_size = 24
-        text_3.width = text_1.width
-        text_2.width = text_1.width
+        text_1 = make_text(text_1, 24, None)
+        text_2 = make_text(text_2, 24, text_1)
+        text_3 = make_text(text_2, 24, text_1)
 
         text_2.next_to(text_1, DOWN)
         text_3.next_to(text_2, DOWN)
@@ -123,6 +127,13 @@ class DisjunctiveNormalForm(Scene):
         self.play(AddTextLetterByLetter(text_3, run_time=2))
         self.wait()
         self.play(FadeOut(text_1, text_2, text_3, title_1))
-        title_1.text_string = 'Примеры ДНФ'
+        
+        title_1 = Title('Примеры ДНФ', tex_template=MY_TEMPLATE)
         self.play(FadeIn(title_1, example))
         self.wait()
+        self.play(FadeOut(title_1, example))
+        
+        title_1 = Title('Построение ДНФ', tex_template=MY_TEMPLATE)
+        text_1 = 
+
+    
