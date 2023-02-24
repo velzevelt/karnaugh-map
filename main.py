@@ -83,7 +83,9 @@ class FunctionNormalForms(Scene):
         self.wait()
         self.play(FadeIn(title_1))
         self.wait()
-        self.play(Write(text_1, run_time=2.0))
+        self.play(AddTextLetterByLetter(text_1, run_time=2.0))
         self.wait()
-        self.play(Write(text_2, run_time=2.0))
+        self.play(AddTextLetterByLetter(text_2, run_time=2.0))
         self.wait()
+
+        # title_2 = 'Дизъюнктивная нормальная форма'
