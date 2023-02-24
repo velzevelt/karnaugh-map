@@ -1,4 +1,6 @@
 from manim import *
+from manim_voiceover import VoiceoverScene
+from manim_voiceover.services.gtts import GTTSService
 import numpy as np
 
 
@@ -45,9 +47,6 @@ PRE = r"""
 MY_TEMPLATE = TexTemplate(documentclass=r'\documentclass{article}', preamble=PRE, placeholder_text='placeholder')
 
 
-
-
-
 # class IntegerTableExampe(Scene):
 #     def construct(self):
 #         var_qty = 2
@@ -65,12 +64,15 @@ MY_TEMPLATE = TexTemplate(documentclass=r'\documentclass{article}', preamble=PRE
 #         table.scale(0.4)
 #         self.add(table)
 
-class FunctionNormalForms(Scene):
+class FunctionNormalForms(VoiceoverScene):
     def construct(self):
+        self.set_speech_service(GTTSService())
+
+        
         title_1 = Title('Нормальные формы в логике', tex_template=MY_TEMPLATE)
         
         text_1 = 'Формула в булевой логике может быть записана в <span foreground="yellow">дизъюнктивной</span> и в <span foreground="yellow">конъюнктивной</span> нормальной форме.'
-        text_2 = 'Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму'
+        text_2 = 'Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму.'
         text_1 = MarkupText(text_1)
         text_2 = MarkupText(text_2)
         text_1.font_size = 24
@@ -83,9 +85,11 @@ class FunctionNormalForms(Scene):
         # self.add(text_1, text_2)
 
         self.wait()
-        self.play(FadeIn(title_1))
-        self.wait()
-        self.play(AddTextLetterByLetter(text_1, run_time=3.0))
-        self.wait()
-        self.play(AddTextLetterByLetter(text_2, run_time=3.0))
-        self.wait()
+        with self.voiceover(text="This circle is drawn as I speak.") as tracker:
+            self.play(FadeIn(title_1))
+        
+        # self.wait()
+        # self.play(AddTextLetterByLetter(text_1, run_time=3.0))
+        # self.wait()
+        # self.play(AddTextLetterByLetter(text_2, run_time=3.0))
+        # self.wait()
