@@ -79,11 +79,13 @@ class FunctionNormalForms(Scene):
 
         text_2.next_to(text_1, DOWN)
 
-        self.add(title_1)
-        self.add(text_1, text_2)
+        # self.add(title_1)
+        # self.add(text_1, text_2)
 
-        # self.wait()
-        # self.play(FadeIn(title_1), )
-        # self.play(AddTextLetterByLetter(text_1, run_time=3.0))
-        # self.play(AddTextLetterByLetter(text_2, run_time=3.0))
-        # self.wait()
+        self.wait()
+        self.play(FadeIn(title_1))
+        self.wait()
+        self.play(AddTextLetterByLetter(text_1, run_time=3.0))
+        self.wait()
+        self.play(AddTextLetterByLetter(text_2, run_time=3.0))
+        self.wait()
