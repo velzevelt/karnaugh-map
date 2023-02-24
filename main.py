@@ -36,8 +36,8 @@ def get_rand_function_result(var_qty: int) -> list:
 
 
 PRE = r"""
-\usepackage[english, russian]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
 \usepackage[T2A, T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -152,7 +152,9 @@ class DisjunctiveNormalForm(Scene):
         # self.play(FadeOut(title_1, example, example_2))
         # title_1 = Title('Пример построения ДНФ', tex_template=MY_TEMPLATE)
         # text_1 = Tex(r'\selectlanguage{russian} Приведем к ДНФ формулу ${\displaystyle F=\neg ((X\rightarrow Y)\vee \neg (Y\rightarrow Z))}$', tex_template=MY_TEMPLATE)
+        text_1 = Tex('Test', tex_template=MY_TEMPLATE) #Tex(r'Test ${\displaystyle F=\neg ((X\rightarrow Y)\vee \neg (Y\rightarrow Z))}$', tex_template=MY_TEMPLATE)
+        text_1.font_size = 24
         
-        title_1.show()
+        # title_1.show()
         text_1.show()
         # self.play(FadeIn(title_1, text_1))
