@@ -3,7 +3,7 @@ import numpy as np
 
 
 
-def make_text(text, font_size, width_from: MarkupText) -> MarkupText:
+def make_text(text, font_size, width_from: MarkupText = None) -> MarkupText:
     if width_from:
         res = MarkupText(text)
         res.font_size = font_size
@@ -109,7 +109,7 @@ class DisjunctiveNormalForm(Scene):
         text_3 = 'Дизъюнктивная нормальная форма удобна для автоматического доказательства теорем.'
         text_1 = make_text(text_1, 24, None)
         text_2 = make_text(text_2, 24, text_1)
-        text_3 = make_text(text_2, 24, text_1)
+        text_3 = make_text(text_3, 24, text_1)
 
         text_2.next_to(text_1, DOWN)
         text_3.next_to(text_2, DOWN)
