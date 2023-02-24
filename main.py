@@ -69,19 +69,21 @@ class FunctionNormalForms(Scene):
     def construct(self):
         title_1 = Title('Нормальные формы в логике', tex_template=MY_TEMPLATE)
         
-        text_1 = 'Формула в булевой логике может быть записана в <span foreground="yellow">дизъюнктивной</span> и в <span foreground="yellow">конъюнктивной</span> нормальной форме. '
+        text_1 = 'Формула в булевой логике может быть записана в <span foreground="yellow">дизъюнктивной</span> и в <span foreground="yellow">конъюнктивной</span> нормальной форме.'
         text_2 = 'Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму'
         text_1 = MarkupText(text_1)
         text_2 = MarkupText(text_2)
         text_1.font_size = 24
         text_2.font_size = 24
-        VGroup((text_1, text_2).arrange(RIGHT))
+        text_2.width = text_1.width
 
-        # self.add(title_1)
-        # self.add(text_1)
+        text_2.next_to(text_1, DOWN)
 
-        self.wait()
-        self.play(FadeIn(title_1), )
-        self.play(AddTextLetterByLetter(text_1, run_time=3.0))
-        self.play(AddTextLetterByLetter(text_2, run_time=3.0))
-        self.wait()
+        self.add(title_1)
+        self.add(text_1, text_2)
+
+        # self.wait()
+        # self.play(FadeIn(title_1), )
+        # self.play(AddTextLetterByLetter(text_1, run_time=3.0))
+        # self.play(AddTextLetterByLetter(text_2, run_time=3.0))
+        # self.wait()
