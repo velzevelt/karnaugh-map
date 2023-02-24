@@ -134,6 +134,12 @@ class DisjunctiveNormalForm(Scene):
         self.play(FadeOut(title_1, example))
         
         title_1 = Title('Построение ДНФ', tex_template=MY_TEMPLATE)
-        text_1 = 
+        text_1 = make_text('Избавиться от всех логических операций, содержащихся в формуле, заменив их основными: конъюнкцией, дизъюнкцией, отрицанием. Это можно сделать, используя равносильные формулы:', 24)
+        example = Tex(r'${A\rightarrow B=\neg A\vee B}$ \\ ${A\leftrightarrow B=(A\wedge B)\vee (\neg A\wedge \neg B)}$')
+        example.next_to(text_1, DOWN, buff=0.8)
 
+        self.play(FadeIn(title_1), AddTextLetterByLetter(text_1, run_time=6.0))
+        self.wait()
+        self.play(Write(example))
+        self.wait()
     
