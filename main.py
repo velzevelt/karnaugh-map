@@ -45,7 +45,7 @@ PRE = r"""
 MY_TEMPLATE = TexTemplate(documentclass=r'\documentclass{article}', preamble=PRE, placeholder_text='placeholder')
 
 
-# class IntegerTableExampe(Scene):
+# class IntegerTableExample(Scene):
 #     def construct(self):
 #         var_qty = 2
 #         column_size = 2 ** var_qty
@@ -88,4 +88,29 @@ class FunctionNormalForms(Scene):
         self.play(AddTextLetterByLetter(text_2, run_time=2.0))
         self.wait()
 
-        # title_2 = 'Дизъюнктивная нормальная форма'
+
+class DisjunctiveNormalForm(Scene):
+    def construct(self):
+        
+        title_1 = Title('Дизъюнктивная нормальная форма', tex_template=MY_TEMPLATE)
+        
+        text_1 = 'Дизъюнктивная нормальная форма (ДНФ) в булевой логике — нормальная форма, в которой булева формула имеет вид дизъюнкции конъюнкций литералов. Любая булева формула может быть приведена к ДНФ. Для этого можно использовать <span background="yellow"закон двойного отрицания, закон де Моргана, закон дистрибутивности.</span>'
+        text_2 = 'Дизъюнктивная нормальная форма удобна для автоматического доказательства теорем.'
+        text_1 = MarkupText(text_1)
+        text_2 = MarkupText(text_2)
+        text_1.font_size = 24
+        text_2.font_size = 24
+        text_2.width = text_1.width
+
+        text_2.next_to(text_1, DOWN)
+
+        # self.add(title_1)
+        # self.add(text_1, text_2)
+
+        self.wait()
+        self.play(FadeIn(title_1))
+        self.wait()
+        self.play(AddTextLetterByLetter(text_1, run_time=10))
+        self.wait()
+        self.play(AddTextLetterByLetter(text_2, run_time=2.0))
+        self.wait()
