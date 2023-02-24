@@ -31,8 +31,6 @@ def make_truth_table(var_qty: int) -> list:
     return result
 
 
-def get_karnaugh_map():
-    ...
 
 def get_rand_function_result(var_qty: int) -> list:
     return np.random.randint(2, size=2**var_qty)
@@ -209,7 +207,6 @@ class KarnaughMap(Scene):
             h_buff=0.6,
             line_config={'stroke_width': 1}
             )
-        table.scale(0.5)
         
         # table.next_to(title_1, DOWN, buff=0.1)
 
@@ -232,13 +229,15 @@ class KarnaughMap(Scene):
             h_buff=0.6,
             line_config={'stroke_width': 1}
         )
-        karnaugh_map.scale(0.5)
-        karnaugh_map.next_to(table)
         
-        # self.play(FadeIn(title_1))
-        # self.wait()
-        # self.play(table.create())
-        # self.wait()
 
-        self.add(table)
-        self.add(karnaugh_map)
+        Group(table, karnaugh_map).arrange(buff=1.0).to_edge(LEFT, buff=1)
+        # self.add(table)
+        # self.add(karnaugh_map)
+        
+        self.play(FadeIn(title_1))
+        self.wait()
+        self.play(table.create())
+        self.wait()
+        self.play(karnaugh_map.create())
+        self.wait()
