@@ -221,7 +221,10 @@ class KarnaughMap(Scene):
         )
         top_left.rotate(-PI / 4)
 
-        karnaugh_map = IntegerTable([[0, 0], [1, 1]], include_outer_lines=True,
+        karnaugh_map = MobjectTable(
+            # [[0, 0], [1, 1]], 
+            [[Tex(0, ali), Tex(1)], [Tex(2), Tex(3)]], 
+            include_outer_lines=True,
             col_labels=[Tex(0), Tex(1)],
             row_labels=[Tex(0), Tex(1)],
             top_left_entry=top_left,
@@ -229,6 +232,7 @@ class KarnaughMap(Scene):
             h_buff=0.6,
             line_config={'stroke_width': 1}
         )
+        
         
 
         Group(table, karnaugh_map).arrange(buff=1.0).to_edge(LEFT, buff=1)
