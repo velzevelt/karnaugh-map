@@ -189,7 +189,7 @@ class DisjunctiveNormalForm(Scene):
         self.play(Write(text_3, run_time=2.0))
         self.play(Write(text_4, run_time=5.0))
         self.wait()
-        self.play(FadeOut(title_1, text_2, text_3, text_4))
+        self.play(FadeOut(title_1, text_1, text_2, text_3, text_4))
 
         title_1 = Title('Переход от ДНФ к СДНФ', tex_template=MY_TEMPLATE)
         transition_1 = Tex(r'${X\vee \neg Y\neg Z=X(Y\vee \neg Y)(Z\vee \neg Z)\vee (X\vee \neg X)\neg Y\neg Z=}$ \\ ${XYZ\vee X\neg YZ\vee XY\neg Z\vee X\neg Y\neg Z\vee X\neg Y\neg Z\vee \neg X\neg Y\neg Z=}$ \\ ${=XYZ\vee X\neg YZ\vee XY\neg Z\vee X\neg Y\neg Z\vee \neg X\neg Y\neg Z}$')
