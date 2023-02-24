@@ -217,7 +217,7 @@ class KarnaughMap(Scene):
         line.set_length(0.5)
 
         # test = MobjectTable([Tex('test', line)])
-        test = IntegerTable([1, 2])
+        test = MathTable([Tex('$X_{1}$'), Tex('$X_{2}$')])
 
         karnaugh_map = IntegerTable([[0, 0], [1, 1]], include_outer_lines=True,
             col_labels=[Tex(0), Tex(1)],
