@@ -198,7 +198,7 @@ class KarnaughMap(Scene):
         table = IntegerTable(table_data,
             include_outer_lines=True,
             top_left_entry=Text("N"),
-            col_labels=[Text('A'), Text('B'), Text('C'), Text('D'), Text('F')],
+            col_labels=[Tex('X_{1}'), Tex('X_{2}'), Tex('X_{3}'), Tex('X_{4}'), Text('F')],
             row_labels=[MathTex(str(i)) for i in range(column_size)]
             )
         table.scale(0.4)
