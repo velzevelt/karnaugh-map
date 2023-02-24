@@ -15,6 +15,7 @@ def make_truth_table(var_qty: int) -> list:
             result[j][i] = temp
             counter += 1
     
+    result = np.fliplr(result)
     return result
 
 
@@ -121,4 +122,7 @@ class DisjunctiveNormalForm(Scene):
         self.wait()
         self.play(AddTextLetterByLetter(text_3, run_time=2))
         self.wait()
-        self.play(FadeOut(text_1, text_2, text_3), title_1.animate.text_str ='Test')
+        self.play(FadeOut(text_1, text_2, text_3, title_1))
+        title_1.text_string = 'Примеры ДНФ'
+        self.play(FadeIn(title_1, example))
+        self.wait()
