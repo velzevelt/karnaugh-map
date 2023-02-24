@@ -1,6 +1,4 @@
 from manim import *
-from manim_voiceover import VoiceoverScene
-from manim_voiceover.services.gtts import GTTSService
 import numpy as np
 
 
@@ -64,10 +62,8 @@ MY_TEMPLATE = TexTemplate(documentclass=r'\documentclass{article}', preamble=PRE
 #         table.scale(0.4)
 #         self.add(table)
 
-class FunctionNormalForms(VoiceoverScene):
+class FunctionNormalForms(Scene):
     def construct(self):
-        self.set_speech_service(GTTSService())
-
         
         title_1 = Title('Нормальные формы в логике', tex_template=MY_TEMPLATE)
         
@@ -85,11 +81,9 @@ class FunctionNormalForms(VoiceoverScene):
         # self.add(text_1, text_2)
 
         self.wait()
-        with self.voiceover(text="This circle is drawn as I speak.") as tracker:
-            self.play(FadeIn(title_1))
-        
-        # self.wait()
-        # self.play(AddTextLetterByLetter(text_1, run_time=3.0))
-        # self.wait()
-        # self.play(AddTextLetterByLetter(text_2, run_time=3.0))
-        # self.wait()
+        self.play(FadeIn(title_1))
+        self.wait()
+        self.play(AddTextLetterByLetter(text_1, run_time=3.0))
+        self.wait()
+        self.play(AddTextLetterByLetter(text_2, run_time=3.0))
+        self.wait()
