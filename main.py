@@ -114,8 +114,8 @@ class DisjunctiveNormalForm(Scene):
         text_2.next_to(text_1, DOWN)
         text_3.next_to(text_2, DOWN)
 
-        example = r'${A\lor B}$ \\ ${\displaystyle (A\land B)\lor {\overline {A}}}$ \\ ${\displaystyle (A\land B\land {\overline {C}})\lor ({\overline {D}}\land E\land F)\lor (C\land D)\lor B}$'
-        example = Tex(example)
+        example_1 = r'${A\lor B}$ \\ ${\displaystyle (A\land B)\lor {\overline {A}}}$ \\ ${\displaystyle (A\land B\land {\overline {C}})\lor ({\overline {D}}\land E\land F)\lor (C\land D)\lor B}$'
+        example_1 = Tex(example_1)
 
         # self.wait()
         # self.play(FadeIn(title_1))
@@ -129,27 +129,27 @@ class DisjunctiveNormalForm(Scene):
         # self.play(FadeOut(text_1, text_2, text_3, title_1))
         
         # title_1 = Title('Примеры ДНФ', tex_template=MY_TEMPLATE)
-        # self.play(FadeIn(title_1, example))
+        # self.play(FadeIn(title_1, example_1))
         # self.wait()
-        # self.play(FadeOut(title_1, example))
+        # self.play(FadeOut(title_1, example_1))
         
         # title_1 = Title('Построение ДНФ', tex_template=MY_TEMPLATE)
         # text_1 = make_text('Избавиться от всех логических операций, содержащихся в формуле, заменив их основными: конъюнкцией, дизъюнкцией, отрицанием. Это можно сделать, используя равносильные формулы:', 24)
-        # example = Tex(r'${A\rightarrow B=\neg A\vee B}$ \\ ${A\leftrightarrow B=(A\wedge B)\vee (\neg A\wedge \neg B)}$')
-        # example.next_to(text_1, DOWN, buff=0.8)
+        # example_1 = Tex(r'${A\rightarrow B=\neg A\vee B}$ \\ ${A\leftrightarrow B=(A\wedge B)\vee (\neg A\wedge \neg B)}$')
+        # example_1.next_to(text_1, DOWN, buff=0.8)
 
         # self.play(FadeIn(title_1))
         # self.play(AddTextLetterByLetter(text_1, run_time=6.0))
         # self.wait()
-        # self.play(Write(example))
+        # self.play(Write(example_1))
         # self.wait()
         # self.play(FadeOut(text_1))
         # example_2 = Tex(r'${\neg (A\vee B)=\neg A\wedge \neg B}$ \\ ${\neg (A\wedge B)=\neg A\vee \neg B}$')
-        # example_2.next_to(example, UP)
+        # example_2.next_to(example_1, UP)
         # self.play(Write(example_2))
         # self.wait()
 
-        # self.play(FadeOut(title_1, example, example_2))
+        # self.play(FadeOut(title_1, example_1, example_2))
         
         title_1 = Title('Пример построения ДНФ', tex_template=MY_TEMPLATE)
         text_1 = make_text('Приведем к ДНФ формулу', 24)
@@ -160,14 +160,22 @@ class DisjunctiveNormalForm(Scene):
         func_3 = Tex(r'2) ${\displaystyle F=(\neg \neg X\wedge \neg Y)\wedge (\neg Y\vee Z)=(X\wedge \neg Y)\wedge (\neg Y\vee Z)}$')
         func_4 = Tex(r'3) ${\displaystyle F=(X\wedge \neg Y\wedge \neg Y)\vee (X\wedge \neg Y\wedge Z)}$')
         
-        func_1.next_to(text_1)
-        VGroup(func_1, func_2, func_3, func_4).arrange(DOWN)
+        VGroup(func_1, func_2, func_3, func_4).arrange(DOWN).next_to(text_1, DOWN)
 
         self.play(FadeIn(title_1))
         self.play(AddTextLetterByLetter(text_1))
-        self.play(Write(func_1, func_2, func_3, func_4))
+        self.play(Write(func_1))
         self.wait()
         self.play(FadeOut(text_1))
         self.wait()
+        self.play(Write(func_2))
+        self.wait()
+        self.play(Write(func_3))
+        self.wait()
+        self.play(Write(func_4))
+        self.wait()
+        self.play(FadeOut(title_1, func_1, func_2, func_3, func_4))
+        self.wait()
         
-        
+        title_1 = Title('Совершенная дизъюнктивная нормальная форма', tex_template=MY_TEMPLATE)
+        text_1 = 
