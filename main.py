@@ -30,6 +30,8 @@ def make_truth_table(var_qty: int) -> list:
     result = np.fliplr(result)
     return result
 
+def get_karnaugh_map():
+    ...
 
 def get_rand_function_result(var_qty: int) -> list:
     return np.random.randint(2, size=2**var_qty)
@@ -197,9 +199,16 @@ class KarnaughMap(Scene):
 
         table = IntegerTable(table_data,
             include_outer_lines=True,
-            top_left_entry=Text("N"),
-            col_labels=[Tex('X_{1}'), Tex('X_{2}'), Tex('X_{3}'), Tex('X_{4}'), Text('F')],
+            top_left_entry=Tex('N'),
+            col_labels=[Tex('$X_{1}$'), Tex('$X_{2}$'), Tex('$X_{3}$'), Tex('$X_{4}$'), Tex('F')],
             row_labels=[MathTex(str(i)) for i in range(column_size)]
             )
         table.scale(0.4)
-        self.add(table)
+        
+        karnaugh_map = IntegerTable([], include_outer_lines=True)
+        
+        self.play(Create(table, run_time=12.0))
+        self.wait()
+
+
+        # self.add(table)
