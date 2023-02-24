@@ -121,5 +121,5 @@ class DisjunctiveNormalForm(Scene):
         self.wait()
         self.play(AddTextLetterByLetter(text_3, run_time=2))
         self.wait()
-        title_1.text
+        title_1.tex_string = 'Test'
         self.play(FadeOut(text_1, text_2, text_3))
