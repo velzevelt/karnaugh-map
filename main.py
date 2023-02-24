@@ -153,12 +153,21 @@ class DisjunctiveNormalForm(Scene):
         
         title_1 = Title('Пример построения ДНФ', tex_template=MY_TEMPLATE)
         text_1 = make_text('Приведем к ДНФ формулу', 24)
-        func = Tex(r'${\displaystyle F=\neg ((X\rightarrow Y)\vee \neg (Y\rightarrow Z))}$')
-        func.next_to(text_1, DOWN)
+        text_1.next_to(title_1, DOWN, buff=1.0)
+        
+        func_1 = Tex(r'${\displaystyle F=\neg ((X\rightarrow Y)\vee \neg (Y\rightarrow Z))}$')
+        func_2 = Tex(r'1) ${\displaystyle F=\neg ((\neg X\vee Y)\vee \neg (\neg Y\vee Z))}$')
+        func_3 = Tex(r'2) ${\displaystyle F=(\neg \neg X\wedge \neg Y)\wedge (\neg Y\vee Z)=(X\wedge \neg Y)\wedge (\neg Y\vee Z)}$')
+        func_4 = Tex(r'3) ${\displaystyle F=(X\wedge \neg Y\wedge \neg Y)\vee (X\wedge \neg Y\wedge Z)}$')
+        
+        func_1.next_to(text_1)
+        VGroup(func_1, func_2, func_3, func_4).arrange(DOWN)
 
         self.play(FadeIn(title_1))
         self.play(AddTextLetterByLetter(text_1))
-        self.play(Write(func))
+        self.play(Write(func_1, func_2, func_3, func_4))
         self.wait()
         self.play(FadeOut(text_1))
         self.wait()
+        
+        
