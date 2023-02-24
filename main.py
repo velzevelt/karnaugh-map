@@ -87,15 +87,14 @@ class FunctionNormalForms(Scene):
 
         text_2.next_to(text_1, DOWN)
 
-        # self.add(title_1)
-        # self.add(text_1, text_2)
-
         self.wait()
         self.play(FadeIn(title_1))
         self.wait()
         self.play(AddTextLetterByLetter(text_1, run_time=2))
         self.wait()
         self.play(AddTextLetterByLetter(text_2, run_time=2))
+        self.wait()
+        self.play(FadeOut(text_1, text_2))
         self.wait()
 
 
@@ -179,7 +178,14 @@ class DisjunctiveNormalForm(Scene):
         
         title_1 = Title('Совершенная дизъюнктивная нормальная форма', tex_template=MY_TEMPLATE)
         text_1 = make_text('(СДНФ) — одна из форм представления функции алгебры логики (булевой функции) в виде логического выражения. Представляет собой частный случай ДНФ, удовлетворяющий следующим трём условиям: ', font_size=20)
-        text_2 = make_text('<ul>в ней нет одинаковых слагаемых (элементарных конъюнкций)</ul>')
-        VGroup(text_1, text_2).arrange(DOWN).next_to(title_1, DOWN, buff=1.0)
+        text_2 = make_text('1) В ней нет одинаковых слагаемых (элементарных конъюнкций);', font_size=20)
+        text_3 = make_text('2) В каждом слагаемом нет повторяющихся переменных;', font_size=20, width_from=text_2)
+        text_4 = make_text('3) каждое слагаемое содержит все переменные, от которых зависит булева функция (каждая переменная может входить в слагаемое либо в прямой, либо в инверсной форме).', font_size=20, width_from=text_3)
+        VGroup(text_1, text_2, text_3, text_4).arrange(DOWN).next_to(title_1, DOWN, buff=1.0)
 
-        self.play(FadeIn(title_1, text_1, text_2))
+        self.play(FadeIn(title_1))
+        self.play(AddTextLetterByLetter(text_1, run_time=6.0))
+        self.play(Write(text_2))
+        self.play(Write(text_3))
+        self.play(Write(text_4))
+        self.wait()
