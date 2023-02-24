@@ -192,16 +192,18 @@ class DisjunctiveNormalForm(Scene):
 class KarnaughMap(Scene):
     def construct(self):
         title_1 = Title('Карты Карно', tex_template=MY_TEMPLATE)
-        var_qty = 4
+        var_qty = 2
         column_size = 2 ** var_qty
-        function_result = [0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1]
+        # function_result = [0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1]
+        function_result = [0, 0, 1, 1]
         table_data = make_truth_table(var_qty)
         table_data = np.c_[table_data, function_result]
 
         table = IntegerTable(table_data,
             include_outer_lines=True,
             top_left_entry=Tex('N'),
-            col_labels=[Tex('$X_{1}$'), Tex('$X_{2}$'), Tex('$X_{3}$'), Tex('$X_{4}$'), Tex('F')],
+            col_labels=[Tex('$X_{1}$'), Tex('$X_{2}$'), Tex('F')],
+            # col_labels=[Tex('$X_{1}$'), Tex('$X_{2}$'), Tex('$X_{3}$'), Tex('$X_{4}$'), Tex('F')],
             row_labels=[MathTex(str(i)) for i in range(column_size)],
             v_buff=0.4,
             h_buff=0.6,
@@ -211,12 +213,21 @@ class KarnaughMap(Scene):
         
         # table.next_to(title_1, DOWN, buff=0.1)
 
-        # karnaugh_map = IntegerTable([], include_outer_lines=True)
+        karnaugh_map = IntegerTable([[0, 0], [1, 1]], include_outer_lines=True,
+            top_left_entry=Tex('Test'),
+            col_labels=[Tex(0), Tex(1)],
+            row_labels=[Tex(0), Tex(1)],
+            v_buff=0.4,
+            h_buff=0.6,
+            line_config={'stroke_width': 1}
+        )
+        karnaugh_map.scale(0.5)
+        karnaugh_map.next_to(table)
         
         # self.play(FadeIn(title_1))
         # self.wait()
         # self.play(table.create())
         # self.wait()
 
-
         self.add(table)
+        self.add(karnaugh_map)
