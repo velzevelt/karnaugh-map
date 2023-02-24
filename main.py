@@ -95,7 +95,7 @@ class DisjunctiveNormalForm(Scene):
         title_1 = Title('Дизъюнктивная нормальная форма', tex_template=MY_TEMPLATE)
         
         text_1 = 'Дизъюнктивная нормальная форма (ДНФ) в булевой логике — нормальная форма, в которой булева формула имеет вид дизъюнкции конъюнкций литералов. Любая булева формула может быть приведена к ДНФ.'
-        text_2 = 'Для этого можно использовать <span background="yellow">закон двойного отрицания, закон де Моргана, закон дистрибутивности.</span>'
+        text_2 = 'Для этого можно использовать <span foreground="yellow">закон двойного отрицания, закон де Моргана, закон дистрибутивности.</span>'
         text_3 = 'Дизъюнктивная нормальная форма удобна для автоматического доказательства теорем.'
         text_1 = MarkupText(text_1)
         text_2 = MarkupText(text_2)
@@ -115,9 +115,9 @@ class DisjunctiveNormalForm(Scene):
         self.wait()
         self.play(FadeIn(title_1))
         self.wait()
-        self.play(AddTextLetterByLetter(text_1, run_time=10))
+        self.play(AddTextLetterByLetter(text_1))
         self.wait()
-        self.play(AddTextLetterByLetter(text_2, run_time=2.0))
+        self.play(AddTextLetterByLetter(text_2))
         self.wait()
-        self.play(AddTextLetterByLetter(text_3, run_time=2.0))
+        self.play(AddTextLetterByLetter(text_3))
         self.wait()
