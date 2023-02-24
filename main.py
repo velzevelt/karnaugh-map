@@ -212,11 +212,13 @@ class KarnaughMap(Scene):
         table.scale(0.5)
         
         # table.next_to(title_1, DOWN, buff=0.1)
-
+        line = Line(UP + LEFT, DOWN + RIGHT)
+        line.stroke_width = 1
+        line.set_length(0.5)
         karnaugh_map = IntegerTable([[0, 0], [1, 1]], include_outer_lines=True,
-            top_left_entry=Tex('Test'),
             col_labels=[Tex(0), Tex(1)],
             row_labels=[Tex(0), Tex(1)],
+            top_left_entry=[Tex('test'), line],
             v_buff=0.4,
             h_buff=0.6,
             line_config={'stroke_width': 1}
