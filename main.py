@@ -85,6 +85,7 @@ class FunctionNormalForms(Scene):
         text_1 = make_text(text_1, font_size=24, width_from=None)
         text_2 = make_text(text_2, font_size=24, width_from=text_1)
 
+        text_1.next_to(title_1, DOWN, buff=1.0)
         text_2.next_to(text_1, DOWN)
 
         self.wait()
@@ -94,7 +95,7 @@ class FunctionNormalForms(Scene):
         self.wait()
         self.play(AddTextLetterByLetter(text_2, run_time=2))
         self.wait()
-        self.play(FadeOut(text_1, text_2))
+        self.play(FadeOut(title_1, text_1, text_2))
         self.wait()
 
 
