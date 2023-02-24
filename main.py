@@ -55,7 +55,7 @@ PRE = r"""
 \linespread{1}
 """
 
-MY_TEMPLATE = TexTemplate(documentclass=r'\documentclass{article}', preamble=PRE, placeholder_text='placeholder')
+MY_TEMPLATE = TexTemplate(preamble=PRE)
 
 
 # class IntegerTableExample(Scene):
@@ -150,11 +150,9 @@ class DisjunctiveNormalForm(Scene):
         # self.wait()
 
         # self.play(FadeOut(title_1, example, example_2))
-        # title_1 = Title('Пример построения ДНФ', tex_template=MY_TEMPLATE)
-        # text_1 = Tex(r'\selectlanguage{russian} Приведем к ДНФ формулу ${\displaystyle F=\neg ((X\rightarrow Y)\vee \neg (Y\rightarrow Z))}$', tex_template=MY_TEMPLATE)
-        text_1 = Tex('Test', tex_template=MY_TEMPLATE) #Tex(r'Test ${\displaystyle F=\neg ((X\rightarrow Y)\vee \neg (Y\rightarrow Z))}$', tex_template=MY_TEMPLATE)
-        text_1.font_size = 24
+        title_1 = Title('Пример построения ДНФ', tex_template=MY_TEMPLATE)
+        text_1 = Tex(r'Приведем к ДНФ формулу ${\displaystyle F=\neg ((X\rightarrow Y)\vee \neg (Y\rightarrow Z))}$', tex_template=MY_TEMPLATE)
+        text_1.font_size = 30
         
-        # title_1.show()
-        text_1.show()
+        self.add(title_1, text_1)
         # self.play(FadeIn(title_1, text_1))
