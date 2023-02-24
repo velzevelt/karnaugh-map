@@ -21,7 +21,7 @@ def make_truth_table(var_qty: int) -> list:
         counter = 0
         temp = 0
         for j in range(column_max_size):
-            if counter == i + 1:
+            if counter == 2**i:
                 counter = 0
                 temp = 1 if temp == 0 else 0
             result[j][i] = temp
@@ -29,6 +29,8 @@ def make_truth_table(var_qty: int) -> list:
     
     result = np.fliplr(result)
     return result
+
+print(make_truth_table(4))
 
 def get_karnaugh_map():
     ...
@@ -205,9 +207,13 @@ class KarnaughMap(Scene):
             )
         table.scale(0.4)
         
+        table.next_to(title_1, DOWN, buff=1.0)
+
         karnaugh_map = IntegerTable([], include_outer_lines=True)
         
-        self.play(Create(table, run_time=12.0))
+        self.play(FadeIn(title_1))
+        self.wait()
+        self.play(Create(table, run_time=10.0))
         self.wait()
 
 
