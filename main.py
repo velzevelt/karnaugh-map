@@ -222,7 +222,10 @@ class KarnaughMap(Scene):
         t_1.rotate(PI / 4)
         t_2.rotate(PI / 4)
 
-        test = MobjectTable([t_1, t_2])
+        test = MobjectTable([t_1, t_2], line_config={'stroke_width': 1.3},
+            v_buff=0.4,
+            h_buff=0.6,
+        )
         test.rotate(-PI / 4)
 
         karnaugh_map = IntegerTable([[0, 0], [1, 1]], include_outer_lines=True,
