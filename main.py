@@ -275,17 +275,22 @@ class KarnaughMap(Scene):
         
         self.play(FadeOut(box_1, arrow_1))
         
-        # Подстановка значений в координаты
-        karnaugh_map_2.move_to(karnaugh_map.get_center())
-        self.play(karnaugh_map.animate.become(karnaugh_map_2))
-        self.wait()
-
         ## Подстановка значений в координаты. Объяснение
         box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
         arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
         self.play(Create(box_1))
         self.play(Create(arrow_1))
         self.wait()
+
+        karnaugh_map_2.move_to(karnaugh_map.get_center())
+        self.play(karnaugh_map.animate.become(karnaugh_map_2))
+        self.wait()
         
+        # Завершение сцены
         self.play(FadeOut(box_1, arrow_1, box_2))
         self.wait()
+        
+        # Новый фрагмент
+        # self.play(FadeOut(title_1, karnaugh_map))
+
+        # title_1 = Title('Составление ДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
