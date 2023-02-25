@@ -456,14 +456,15 @@ class KarnaughMapM4(Scene):
         boxes = VGroup(*boxes)
         # t = [c[1:] for c in karnaugh_map.get_rows()[1:]]
 
-        text_1 = Tex(r"${X_{1} \bar X_{2}} \lor {X_{1} X_{2}}$")
+        text_1 = Tex(r"$\bar X_{1} X_{2} \bar X_{3} \bar X_{4} \lor \bar X_{1} X_{2} \bar X_{3} X_{4}$")
         text_1.next_to(box_1.get_corner(UR) - 0.3, RIGHT, buff=1.0)
         
         self.play(Create(boxes))
         self.wait()
         self.play(Write(text_1))
         self.wait()
-        self.play(FadeOut(title_1, box_1, text_1))
+        self.wait()
+        self.play(FadeOut(title_1, boxes, text_1))
 
         title_1 = Title('Составление ДНФ. Карты Карно', tex_template=MY_TEMPLATE)
         self.play(FadeIn(title_1))
