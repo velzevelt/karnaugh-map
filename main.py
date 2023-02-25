@@ -189,7 +189,7 @@ class DisjunctiveNormalForm(Scene):
 
 class KarnaughMap(Scene):
     def construct(self):
-        title_1 = Title('Карты Карно', tex_template=MY_TEMPLATE)
+        title_1 = Title('Составление карты Карно', tex_template=MY_TEMPLATE)
         var_qty = 2
         column_size = 2 ** var_qty
         # function_result = [0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1]
@@ -221,27 +221,51 @@ class KarnaughMap(Scene):
         )
         top_left.rotate(-PI / 4)
 
+
         karnaugh_map = MobjectTable(
-            # [[0, 0], [1, 1]], 
-            [[Tex(0, ali), Tex(1)], [Tex(2), Tex(3)]], 
+            [[Tex(0), Tex(1)], [Tex(2), Tex(3)]], 
             include_outer_lines=True,
             col_labels=[Tex(0), Tex(1)],
             row_labels=[Tex(0), Tex(1)],
             top_left_entry=top_left,
             v_buff=0.4,
             h_buff=0.6,
-            line_config={'stroke_width': 1}
+            line_config={'stroke_width': 1},
+        )
+
+        karnaugh_map_2 = MobjectTable(
+            [[Tex(0), Tex(0)], [Tex(1), Tex(1)]], 
+            include_outer_lines=True,
+            col_labels=[Tex(0), Tex(1)],
+            row_labels=[Tex(0), Tex(1)],
+            top_left_entry=top_left,
+            v_buff=0.4,
+            h_buff=0.6,
+            line_config={'stroke_width': 1},
         )
         
         
-
-        Group(table, karnaugh_map).arrange(buff=1.0).to_edge(LEFT, buff=1)
-        # self.add(table)
-        # self.add(karnaugh_map)
+        Group(table, karnaugh_map).arrange_in_grid(buff=1)
         
-        self.play(FadeIn(title_1))
-        self.wait()
-        self.play(table.create())
-        self.wait()
-        self.play(karnaugh_map.create())
-        self.wait()
+        # Выделение координат
+        table.add(SurroundingRectangle(table.get_row_labels(), corner_radius=0.2))
+        
+        needle = VGroup(karnaugh_map.get_columns()[1][1:], karnaugh_map.get_columns()[2][1:])
+        karnaugh_map.add(SurroundingRectangle(needle, corner_radius=0.2))
+        arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
+
+        # Подстановка значений в координаты
+        table.add(SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN))
+        arrow_2 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
+
+        self.add(arrow_1)
+        self.add(title_1)
+        self.add(table)
+        self.add(karnaugh_map)
+        
+        # self.play(FadeIn(title_1))
+        # self.wait()
+        # self.play(table.create())
+        # self.wait()
+        # self.play(karnaugh_map.create())
+        # self.wait()
