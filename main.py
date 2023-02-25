@@ -187,9 +187,9 @@ class DisjunctiveNormalForm(Scene):
         self.wait()
 
 
-class KarnaughMap(Scene):
+class KarnaughMapM2(Scene):
     def construct(self):
-        title_1 = Title('Составление карты Карно', tex_template=MY_TEMPLATE)
+        title_1 = Title('Составление карты Карно. M=2', tex_template=MY_TEMPLATE)
         var_qty = 2
         column_size = 2 ** var_qty
         # function_result = [0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1]
@@ -249,55 +249,76 @@ class KarnaughMap(Scene):
         Group(table, karnaugh_map).arrange_in_grid(buff=1)
         
 
-        # self.play(FadeIn(title_1))
-        # self.wait()
-        # self.play(table.create())
-        # self.wait()
-        # self.play(karnaugh_map.create())
-        # self.wait()
+        self.play(FadeIn(title_1))
+        self.wait()
+        self.play(table.create())
+        self.wait()
+        self.play(karnaugh_map.create())
+        self.wait()
 
-        # # Выделение номера
-        # box_1 = SurroundingRectangle(table.get_row_labels(), corner_radius=0.2)
-        # self.play(Create(box_1))
+        # Выделение номера
+        box_1 = SurroundingRectangle(table.get_row_labels(), corner_radius=0.2)
+        self.play(Create(box_1))
         
-        # # Выделение координат
-        # needle = VGroup(karnaugh_map.get_columns()[1][1:], karnaugh_map.get_columns()[2][1:])
-        # box_2 = SurroundingRectangle(needle, corner_radius=0.2)
-        # self.play(Create(box_2))
-        # self.play(Circumscribe(box_2))
-        # self.wait()
+        # Выделение координат
+        needle = VGroup(karnaugh_map.get_columns()[1][1:], karnaugh_map.get_columns()[2][1:])
+        box_2 = SurroundingRectangle(needle, corner_radius=0.2)
+        self.play(Create(box_2))
+        self.play(Circumscribe(box_2))
+        self.wait()
         
-        # # Стрелка от номера к координатам
-        # arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
-        # self.play(Create(arrow_1))
-        # self.wait()
+        # Стрелка от номера к координатам
+        arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
+        self.play(Create(arrow_1))
+        self.wait()
         
-        # self.play(FadeOut(box_1, arrow_1))
+        self.play(FadeOut(box_1, arrow_1))
         
-        # ## Подстановка значений в координаты. Объяснение
-        # box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
-        # arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
-        # self.play(Create(box_1))
-        # self.play(Create(arrow_1))
-        # self.wait()
+        ## Подстановка значений в координаты. Объяснение
+        box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
+        arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
+        self.play(Create(box_1))
+        self.play(Create(arrow_1))
+        self.wait()
 
-        # karnaugh_map_2.move_to(karnaugh_map.get_center())
-        # self.play(karnaugh_map.animate.become(karnaugh_map_2))
-        # self.wait()
+        karnaugh_map_2.move_to(karnaugh_map.get_center())
+        self.play(karnaugh_map.animate.become(karnaugh_map_2))
+        self.wait()
         
-        # # Завершение сцены
-        # self.play(FadeOut(box_1, arrow_1, box_2))
-        # self.wait()
+        # Завершение сцены
+        self.play(FadeOut(box_1, arrow_1, box_2))
+        self.wait()
         
-        # self.play(FadeOut(title_1, karnaugh_map))
-        # # Новый фрагмент
+        self.play(FadeOut(title_1, karnaugh_map))
+        # Новый фрагмент
 
         title_1 = Title('Составление ДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
-        # self.play(FadeIn(title_1))
-        # self.wait()
+        self.play(FadeIn(title_1))
+        self.wait()
 
         gr = VGroup(table.get_columns()[1:][0][3:], table.get_columns()[1:][1][3:], table.get_columns()[1:][2][3:])
         box_1 = SurroundingRectangle(gr, corner_radius=0.2)
-        text_1 = Tex("test")
-        text_1.next_to(box_1, RIGHT, buff=1.0)
-        self.add(table, title_1, box_1, text_1)
+        text_1 = Tex(r"${X_{1} \bar X_{2}} \lor {X_{1} X_{2}}$")
+        text_1.next_to(box_1.get_corner(UR) - 0.3, RIGHT, buff=1.0)
+        
+        self.play(Create(box_1))
+        self.wait()
+        self.play(Write(text_1))
+        self.wait()
+        self.play(FadeOut(title_1, box_1, text_1))
+
+        title_1 = Title('Составление ДНФ. Карты Карно', tex_template=MY_TEMPLATE)
+        self.play(FadeIn(title_1))
+        self.wait()
+
+        self.play(table.animate.shift(LEFT))
+        self.play(karnaugh_map_2.create())
+        self.wait()
+        
+        gr = VGroup(karnaugh_map_2.get_rows()[-1][1:])
+        box_1 = SurroundingRectangle(gr)
+
+        text_1.next_to(box_1, DOWN, buff=1.0, corner_radius=0.2)
+        self.play(Create(box_1))
+        self.wait()
+        self.play(Write(text_1))
