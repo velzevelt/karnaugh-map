@@ -446,16 +446,20 @@ class KarnaughMapM4(Scene):
         rows = table.get_rows()[1:]
         for i, temp in enumerate(function_result):
             if temp == 1:
-                gr.append( rows[i][1:] )
+                if function_result[i - 1] == 0:
+                    gr.append( rows[i][1:] )
+                else:
+                    gr[-1] = VGroup(gr[-1], rows[i][1:])
 
         boxes = [SurroundingRectangle(g, corner_radius=0.2) for g in gr]
 
+        boxes = VGroup(*boxes)
         # t = [c[1:] for c in karnaugh_map.get_rows()[1:]]
 
         text_1 = Tex(r"${X_{1} \bar X_{2}} \lor {X_{1} X_{2}}$")
         text_1.next_to(box_1.get_corner(UR) - 0.3, RIGHT, buff=1.0)
         
-        self.play(Create(*boxes))
+        self.play(Create(boxes))
         self.wait()
         self.play(Write(text_1))
         self.wait()
