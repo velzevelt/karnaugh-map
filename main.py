@@ -346,7 +346,7 @@ class KarnaughMapM4(Scene):
             )
         
 
-        t_1 = Tex('$X_{3}X_{4}$')
+        t_1 = Tex('$X_{3}X_{4}$').rotate(PI / 2)
         t_2 = Tex('$X_{1}X_{2}$')
         t_1.rotate(PI / 4)
         t_2.rotate(PI / 4)
@@ -365,8 +365,8 @@ class KarnaughMapM4(Scene):
             [Tex(8), Tex(9), Tex(11), Tex(10)]
             ], 
             include_outer_lines=True,
-            col_labels=[Tex('00'), Tex('01'), Tex('11'), Tex('10')],
             row_labels=[Tex('00'), Tex('01'), Tex('11'), Tex('10')],
+            col_labels=[Tex('00').rotate(PI / 2), Tex('01').rotate(PI / 2), Tex('11').rotate(PI / 2), Tex('10').rotate(PI / 2)],
             top_left_entry=top_left.copy(),
             v_buff=0.4,
             h_buff=0.6,
@@ -397,20 +397,21 @@ class KarnaughMapM4(Scene):
         self.wait()
 
         # # Выделение номера
-        # box_1 = SurroundingRectangle(table.get_row_labels(), corner_radius=0.2)
-        # self.play(Create(box_1))
+        box_1 = SurroundingRectangle(table.get_row_labels(), corner_radius=0.2)
+        self.play(Create(box_1))
         
         # # Выделение координат
-        # needle = VGroup(karnaugh_map.get_columns()[1][1:], karnaugh_map.get_columns()[2][1:])
-        # box_2 = SurroundingRectangle(needle, corner_radius=0.2)
-        # self.play(Create(box_2))
-        # self.play(Circumscribe(box_2))
-        # self.wait()
+        t = [c[1:] for c in karnaugh_map.get_rows()[1:]]
+        needle = VGroup(*t)
+        box_2 = SurroundingRectangle(needle, corner_radius=0.2)
+        self.play(Create(box_2))
+        self.play(Circumscribe(box_2))
+        self.wait()
         
         # # Стрелка от номера к координатам
-        # arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
-        # self.play(Create(arrow_1))
-        # self.wait()
+        arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
+        self.play(Create(arrow_1))
+        self.wait()
         
         # self.play(FadeOut(box_1, arrow_1))
         
