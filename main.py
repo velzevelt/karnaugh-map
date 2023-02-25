@@ -253,34 +253,37 @@ class KarnaughMap(Scene):
         # table.add(SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN))
         # arrow_2 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
 
-        # self.add(arrow_1)
-        # self.add(title_1)
-        # self.add(table)
-        # self.add(karnaugh_map)
         
-        # self.play(FadeIn(title_1))
-        # self.wait()
-        # self.play(table.create())
-        # self.wait()
-        # self.play(karnaugh_map.create())
-        # self.wait()
+        self.play(FadeIn(title_1))
+        self.wait()
+        self.play(table.create())
+        self.wait()
+        self.play(karnaugh_map.create())
+        self.wait()
+# table.add(SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN))
+        # arrow_2 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
 
-        # Выделение координат
-        # box_1 = SurroundingRectangle(table.get_row_labels(), corner_radius=0.2)
-        # self.play(Create(box_1))
-        # self.play(Flash(box_1, flash_radius=1.6, num_lines=20))
+        needle = VGroup(karnaugh_map.get_columns()[1][1:], karnaugh_map.get_columns()[2][1:])
+        box_2 = SurroundingRectangle(needle, corner_radius=0.2)
+        self.play(Create(box_2))
+        self.play(Circumscribe(box_2))
+        self.wait()
         
-        # needle = VGroup(karnaugh_map.get_columns()[1][1:], karnaugh_map.get_columns()[2][1:])
-        # box_2 = SurroundingRectangle(needle, corner_radius=0.2)
-        # self.play(Create(box_2))
-        # self.wait()
-        
-        # arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
-        # self.play(Create(arrow_1))
-        # self.play(Circumscribe(arrow_1))
-        # self.wait()
+        arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
+        self.play(Create(arrow_1))
+        self.wait()
         
         # Подстановка значений в координаты
+        self.play(FadeOut(box_1, arrow_1))
+        
+        box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
+        arrow_2 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
+        self.play(Create(box_1))
+        self.play(Create(arrow_2))
+        self.wait()
+        
         karnaugh_map_2.move_to(karnaugh_map.get_center())
         self.play(karnaugh_map.animate.become(karnaugh_map_2))
+        self.play(FadeOut(box_1, arrow_2))
+
         self.wait()
