@@ -275,11 +275,12 @@ class KarnaughMap(Scene):
         
         self.play(FadeOut(box_1, arrow_1))
         
+        # Подстановка значений в координаты
         karnaugh_map_2.move_to(karnaugh_map.get_center())
         self.play(karnaugh_map.animate.become(karnaugh_map_2))
         self.wait()
 
-        ## Подстановка значений в координаты
+        ## Подстановка значений в координаты. Объяснение
         box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
         arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
         self.play(Create(box_1))
