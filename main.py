@@ -457,7 +457,7 @@ class KarnaughMapM4(Scene):
         # t = [c[1:] for c in karnaugh_map.get_rows()[1:]]
 
         text_1 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} \bar X_{4} \lor \bar X_{1} X_{2} \bar X_{3} X_{4}}$ \\ ${\lor \bar X_{1} X_{2} X_{3} \bar X_{4} \lor \bar X_{1} X_{2} X_{3} X_{4}}$ \\ ${\lor X_{1} \bar X_{2} \bar X_{3} X_{4} \lor X_{1} \bar X_{2} X_{3} X_{4}}$ \\ $\lor {X_{1} X_{2} X_{3} \bar X_{4} \lor X_{1} X_{2} X_{3} X_{4}}$")
-        text_1.next_to(table.get_top() - 1.5, RIGHT, buff=1.5)
+        text_1.next_to(table.get_top() - 1.5, RIGHT + 1.5, buff=1)
         
         self.play(Create(boxes))
         self.wait()
