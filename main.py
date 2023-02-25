@@ -446,7 +446,7 @@ class KarnaughMapM4(Scene):
         rows = table.get_rows()[1:]
         for i, temp in enumerate(function_result):
             if temp == 1:
-                gr.append( VGroup(*rows[i][1:]) )
+                gr.append( rows[i][1:] )
 
         boxes = [SurroundingRectangle(g, corner_radius=0.2) for g in gr]
 
