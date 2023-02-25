@@ -340,8 +340,8 @@ class KarnaughMapM4(Scene):
             top_left_entry=Tex('N'),
             col_labels=[Tex('$X_{1}$'), Tex('$X_{2}$'), Tex('$X_{3}$'), Tex('$X_{4}$'), Tex('F')],
             row_labels=[MathTex(str(i)) for i in range(column_size)],
-            v_buff=0.4,
-            h_buff=0.6,
+            v_buff=0.2,
+            h_buff=0.3,
             line_config={'stroke_width': 1}
             )
         
@@ -359,10 +359,14 @@ class KarnaughMapM4(Scene):
 
         # Карта координат
         karnaugh_map = MobjectTable(
-            [[Tex(0), Tex(1)], [Tex(2), Tex(3)]], 
+            [[Tex(0), Tex(1), Tex(3), Tex(2)], 
+            [Tex(4), Tex(5), Tex(7), Tex(6)],
+            [Tex(12), Tex(13), Tex(15), Tex(14)],
+            [Tex(8), Tex(9), Tex(11), Tex(10)]
+            ], 
             include_outer_lines=True,
-            col_labels=[Tex(0), Tex(1)],
-            row_labels=[Tex(0), Tex(1)],
+            col_labels=[Tex('00'), Tex('01'), Tex('11'), Tex('10')],
+            row_labels=[Tex('00'), Tex('01'), Tex('11'), Tex('10')],
             top_left_entry=top_left.copy(),
             v_buff=0.4,
             h_buff=0.6,
@@ -382,15 +386,15 @@ class KarnaughMapM4(Scene):
         )
         
         
-        # Group(table, karnaugh_map).arrange_in_grid(buff=1)
+        Group(table, karnaugh_map).scale(0.5).arrange_in_grid(buff=1)
         
 
         self.play(FadeIn(title_1))
         self.wait()
         self.play(table.create())
-        # self.wait()
-        # self.play(karnaugh_map.create())
-        # self.wait()
+        self.wait()
+        self.play(karnaugh_map.create())
+        self.wait()
 
         # # Выделение номера
         # box_1 = SurroundingRectangle(table.get_row_labels(), corner_radius=0.2)
