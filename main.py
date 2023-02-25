@@ -227,7 +227,7 @@ class KarnaughMap(Scene):
             include_outer_lines=True,
             col_labels=[Tex(0), Tex(1)],
             row_labels=[Tex(0), Tex(1)],
-            top_left_entry=top_left,
+            top_left_entry=top_left.copy(),
             v_buff=0.4,
             h_buff=0.6,
             line_config={'stroke_width': 1},
@@ -239,7 +239,7 @@ class KarnaughMap(Scene):
             include_outer_lines=True,
             col_labels=[Tex(0), Tex(1)],
             row_labels=[Tex(0), Tex(1)],
-            top_left_entry=top_left,
+            top_left_entry=top_left.copy(),
             v_buff=0.4,
             h_buff=0.6,
             line_config={'stroke_width': 1},
@@ -258,27 +258,29 @@ class KarnaughMap(Scene):
         # self.add(table)
         # self.add(karnaugh_map)
         
-        self.play(FadeIn(title_1))
-        self.wait()
-        self.play(table.create())
-        self.wait()
-        self.play(karnaugh_map.create())
-        self.wait()
+        # self.play(FadeIn(title_1))
+        # self.wait()
+        # self.play(table.create())
+        # self.wait()
+        # self.play(karnaugh_map.create())
+        # self.wait()
 
         # Выделение координат
-        box_1 = SurroundingRectangle(table.get_row_labels(), corner_radius=0.2)
-        self.play(Create(box_1))
+        # box_1 = SurroundingRectangle(table.get_row_labels(), corner_radius=0.2)
+        # self.play(Create(box_1))
+        # self.play(Flash(box_1, flash_radius=1.6, num_lines=20))
         
-        needle = VGroup(karnaugh_map.get_columns()[1][1:], karnaugh_map.get_columns()[2][1:])
-        box_2 = SurroundingRectangle(needle, corner_radius=0.2)
-        self.play(Create(box_2))
-        self.wait()
+        # needle = VGroup(karnaugh_map.get_columns()[1][1:], karnaugh_map.get_columns()[2][1:])
+        # box_2 = SurroundingRectangle(needle, corner_radius=0.2)
+        # self.play(Create(box_2))
+        # self.wait()
         
-        arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
-        self.play(Create(arrow_1))
-        self.wait()
+        # arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
+        # self.play(Create(arrow_1))
+        # self.play(Circumscribe(arrow_1))
+        # self.wait()
         
         # Подстановка значений в координаты
-        transform = Transform(karnaugh_map, karnaugh_map_2)
-        self.play(transform)
+        karnaugh_map_2.move_to(karnaugh_map.get_center())
+        self.play(karnaugh_map.animate.become(karnaugh_map_2))
         self.wait()
