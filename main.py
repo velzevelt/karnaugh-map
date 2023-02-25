@@ -248,7 +248,6 @@ class KarnaughMap(Scene):
         
         Group(table, karnaugh_map).arrange_in_grid(buff=1)
         
-        
 
         # Подстановка значений в координаты
         # table.add(SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN))
@@ -267,8 +266,19 @@ class KarnaughMap(Scene):
         self.wait()
 
         # Выделение координат
-        self.play(table.animate.add(SurroundingRectangle(table.get_row_labels(), corner_radius=0.2)))
+        box_1 = SurroundingRectangle(table.get_row_labels(), corner_radius=0.2)
+        self.play(Create(box_1))
         
-        # needle = VGroup(karnaugh_map.get_columns()[1][1:], karnaugh_map.get_columns()[2][1:])
-        # karnaugh_map.add(SurroundingRectangle(needle, corner_radius=0.2))
-        # arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
+        needle = VGroup(karnaugh_map.get_columns()[1][1:], karnaugh_map.get_columns()[2][1:])
+        box_2 = SurroundingRectangle(needle, corner_radius=0.2)
+        self.play(Create(box_2))
+        self.wait()
+        
+        arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
+        self.play(Create(arrow_1))
+        self.wait()
+        
+        # Подстановка значений в координаты
+        transform = Transform(karnaugh_map, karnaugh_map_2)
+        self.play(transform)
+        self.wait()
