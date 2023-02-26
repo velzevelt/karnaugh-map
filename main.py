@@ -1,6 +1,7 @@
 from manim import *
 import numpy as np
-
+from manim_voiceover import VoiceoverScene
+from manim_voiceover.services.gtts import GTTSService
 
 
 def make_text(text, font_size, width_from: MarkupText = None) -> MarkupText:
@@ -59,9 +60,10 @@ PRE = r"""
 MY_TEMPLATE = TexTemplate(preamble=PRE)
 
 
-class FunctionNormalForms(Scene):
+class FunctionNormalForms(VoiceoverScene):
     def construct(self):
-        
+        self.set_speech_service(GTTSService(lang='ru'))
+
         title_1 = Title('Нормальные формы в логике', tex_template=MY_TEMPLATE)
         
         text_1 = 'Формула в булевой логике может быть записана в <span foreground="yellow">дизъюнктивной</span> и в <span foreground="yellow">конъюнктивной</span> нормальной форме.'
@@ -73,11 +75,20 @@ class FunctionNormalForms(Scene):
         text_2.next_to(text_1, DOWN)
 
         self.wait()
-        self.play(FadeIn(title_1))
+        
+        with self.voiceover(text="Нормальные формы в логике.") as tracker:
+            self.play(FadeIn(title_1))
+        
         self.wait()
-        self.play(AddTextLetterByLetter(text_1, run_time=2))
+        
+        with self.voiceover(text="Формула в булевой логике может быть записана в дизъюнктивной и в конъюнктивной нормальной форме.") as tracker:
+            self.play(AddTextLetterByLetter(text_1, run_time=2))
+        
         self.wait()
-        self.play(AddTextLetterByLetter(text_2, run_time=2))
+        
+        with self.voiceover(text="Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму.") as tracker:
+            self.play(AddTextLetterByLetter(text_2, run_time=2))
+        
         self.wait()
         self.play(FadeOut(title_1, text_1, text_2))
         self.wait()
@@ -547,4 +558,11 @@ class KarnaughMapM4(Scene):
         self.play(Write(total_tex))
         self.wait()
         self.play(FadeOut(title_1, total_tex, karnaugh_map_2, *[func_1, func_2, func_3, func_4], *[arrow_1, arrow_2, arrow_3, arrow_4], *[tex_1, tex_2, tex_3, tex_4], *[box_1, box_2, box_3, box_4]))
+        self.wait()
+
+
+class AudioTest(Scene):
+    def construct(self):
+        self.add_sound('test.m4a')
+        self.play(Create(Circle()))
         self.wait()
