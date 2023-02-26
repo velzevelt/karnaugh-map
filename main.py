@@ -298,7 +298,7 @@ class KarnaughMapM2(Scene):
 
         gr = VGroup(table.get_columns()[1:][0][3:], table.get_columns()[1:][1][3:], table.get_columns()[1:][2][3:])
         box_1 = SurroundingRectangle(gr, corner_radius=0.2)
-        text_1 = Tex(r"${X_{1} \bar X_{2}} \lor {X_{1} X_{2}}$")
+        text_1 = Tex(r"${X_{1}}$")
         text_1.next_to(box_1.get_corner(UR) - 0.3, RIGHT, buff=1.0)
         
         self.play(Create(box_1))
@@ -506,6 +506,8 @@ class KarnaughMapM4(Scene):
         VGroup(tex_1, tex_2, tex_3, tex_4).arrange(DOWN).next_to(karnaugh_map_2, buff=1.0)
 
         arrow_1 = Arrow(start=box_1, end=tex_1, color=YELLOW)
+        # arrow_1.add_updater(lambda: arrow_1.end)
+
         arrow_2 = Arrow(start=box_2, end=tex_2, color=GREEN)
         arrow_3 = Arrow(start=box_3, end=tex_3, color=RED)
         arrow_4 = Arrow(start=box_4, end=tex_4, color=BLUE)
@@ -518,7 +520,7 @@ class KarnaughMapM4(Scene):
         self.wait()
 
         func_1 = MathTex(r'\bar X_{1} X_{2}')
-        func_2 = MathTex(r'X_{1} X_{2}')
+        func_2 = MathTex(r'X_{2} X_{3}')
         func_3 = MathTex(r'X_{1} \bar X_{2} \bar X_{3} X_{4}')
         func_4 = MathTex(r'X_{1} \bar X_{2} X_{3} \bar X_{4}')
 
@@ -533,3 +535,6 @@ class KarnaughMapM4(Scene):
         self.play(funcs)
         self.wait()
         
+        gr = VGroup(tex_1, tex_2, tex_3, tex_4)
+        self.play(gr.animate.shift(UP))
+        self.wait()
