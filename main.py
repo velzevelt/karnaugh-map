@@ -298,12 +298,21 @@ class KarnaughMapM2(Scene):
 
         gr = VGroup(table.get_columns()[1:][0][3:], table.get_columns()[1:][1][3:], table.get_columns()[1:][2][3:])
         box_1 = SurroundingRectangle(gr, corner_radius=0.2)
-        text_1 = Tex(r"${F = X_{1} \underline{\bar X_{2}} \lor X_{1} \underline{X_{2}}}$ \\ ${F = X_{1}}$", tex_template=MY_TEMPLATE)
+        text_1 = MathTex(r"F = X_{1} \bar X_{2} \lor X_{1} X_{2}")
+        # text_1 = Tex(r"${F = X_{1} \underline{\bar X_{2}} \lor X_{1} \underline{X_{2}}}$ \\ ${F = X_{1}}$", tex_template=MY_TEMPLATE)
         text_1.next_to(box_1.get_corner(UR) - 0.3, RIGHT, buff=1.0)
         
         self.play(Create(box_1))
         self.wait()
         self.play(Write(text_1))
+        self.wait()
+        self.play(text_1.animate.become(MathTex(r"F = X_{1} \underline{\bar X_{2}} \lor X_{1} \underline{X_{2}}.move_to(text_1)")))
+        self.wait()
+        self.play(text_1.animate.become(MathTex(r"F = X_{1} \underline{\bar X_{2}} \lor X_{1} \underline{X_{2}}")))
+        self.wait()
+        self.play(text_1.animate.become(MathTex(r"F = X_{1}(\bar X_{2} + X_{2})}")))
+        self.wait()
+        self.play(text_1.animate.become(MathTex(r"F = X_{1}")))
         self.wait()
         self.play(FadeOut(title_1, box_1, text_1))
 
