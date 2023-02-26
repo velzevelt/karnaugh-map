@@ -486,8 +486,8 @@ class KarnaughMapM4(Scene):
         self.play(karnaugh_map_2.animate.to_edge(LEFT, buff=1.0))
         self.wait()
         
-        gr = [karnaugh_map_2.get_rows()[2][1:], ]
-        box_1 = SurroundingRectangle(gr, corner_radius=0.2)
+        gr = [karnaugh_map_2.get_rows()[2][1:], karnaugh_map_2.get_columns()[3][2:1]]
+        box_1 = SurroundingRectangle(gr[1], corner_radius=0.2)
         self.play(Create(box_1))
         self.wait()
         # gr = VGroup(karnaugh_map_2.get_rows()[-1][1:])
