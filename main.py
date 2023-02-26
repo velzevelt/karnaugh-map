@@ -503,7 +503,33 @@ class KarnaughMapM4(Scene):
         tex_3 = Tex("$S_{3}$", color=RED)
         tex_4 = Tex("$S_{4}$", color=BLUE)
 
-        tex_1.next_to(title_1, DOWN, buff=1.5)
+        VGroup(tex_1, tex_2, tex_3, tex_4).arrange(DOWN).next_to(karnaugh_map_2, buff=1.0)
 
-        self.play(Create(tex_1))
+        arrow_1 = Arrow(start=box_1, end=tex_1, color=YELLOW)
+        arrow_2 = Arrow(start=box_2, end=tex_2, color=GREEN)
+        arrow_3 = Arrow(start=box_3, end=tex_3, color=RED)
+        arrow_4 = Arrow(start=box_4, end=tex_4, color=BLUE)
+
+        texes = AnimationGroup(*[Write(i) for i in [tex_1, tex_2, tex_3, tex_4]], lag_ratio=1)
+        arrows = [arrow_1, arrow_2, arrow_3, arrow_4]
+        arrows = AnimationGroup(*[Create(i) for i in arrows], lag_ratio=1)
+
+        self.play(texes, arrows)
         self.wait()
+
+        func_1 = MathTex(r'\bar X_{1} X_{2}')
+        func_2 = MathTex(r'X_{1} X_{2}')
+        func_3 = MathTex(r'X_{1} \bar X_{2} \bar X_{3} X_{4}')
+        func_4 = MathTex(r'X_{1} \bar X_{2} X_{3} \bar X_{4}')
+
+        func_1.next_to(tex_1)
+        func_2.next_to(tex_2)
+        func_3.next_to(tex_3)
+        func_4.next_to(tex_4)
+
+        funcs = [func_1, func_2, func_3, func_4]
+        funcs = AnimationGroup(*[Write(i) for i in funcs], lag_ratio=1)
+
+        self.play(funcs)
+        self.wait()
+        
