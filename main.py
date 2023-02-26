@@ -393,8 +393,8 @@ class KarnaughMapM4(Scene):
         Group(table, karnaugh_map).scale(0.5).arrange_in_grid(buff=1)
         
 
-        # self.play(FadeIn(title_1))
-        # self.wait()
+        self.play(FadeIn(title_1))
+        self.wait()
         self.play(table.create())
         # self.wait()
         # self.play(karnaugh_map.create())
@@ -438,24 +438,15 @@ class KarnaughMapM4(Scene):
         # # Новый фрагмент
 
         title_1 = Title('Составление ДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
-        # text_1 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} \bar X_{4} \lor \bar X_{1} X_{2} \bar X_{3} X_{4}}$ \\ ${\lor \bar X_{1} X_{2} X_{3} \bar X_{4} \lor \bar X_{1} X_{2} X_{3} X_{4}}$ \\ ${\lor X_{1} \bar X_{2} \bar X_{3} X_{4} \lor X_{1} \bar X_{2} X_{3} X_{4}}$ \\ $\lor {X_{1} X_{2} X_{3} \bar X_{4} \lor X_{1} X_{2} X_{3} X_{4}}$")
-        lor = Tex(r"${\lor}$")
-        text_1 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} \bar X_{4}}$")
-        text_2 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} X_{4}}$")
-        text_3 = Tex(r'${\bar X_{1} X_{2} X_{3} \bar X_{4}$}')
-        text_4 = Tex(r'${\bar X_{1} X_{2} X_{3} X_{4}}$')
-        text_5 = Tex(r'${X_{1} \bar X_{2} \bar X_{3} X_{4}}$')
-        text_6 = Tex(r'${X_{1} \bar X_{2} X_{3} X_{4}}$')
-        text_7 = Tex(r'${X_{1} X_{2} X_{3} \bar X_{4}}$')
-        text_8 = Tex(r'${X_{1} X_{2} X_{3} X_{4}}$')
+        text_1 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} \bar X_{4} \lor \bar X_{1} X_{2} \bar X_{3} X_{4}}$ \\ ${\lor \bar X_{1} X_{2} X_{3} \bar X_{4} \lor \bar X_{1} X_{2} X_{3} X_{4}}$ \\ ${\lor X_{1} \bar X_{2} \bar X_{3} X_{4} \lor X_{1} \bar X_{2} X_{3} X_{4}}$ \\ $\lor {X_{1} X_{2} X_{3} \bar X_{4} \lor X_{1} X_{2} X_{3} X_{4}}$")
+        
 
-        text_gr = VGroup(text_1, lor.copy(), text_2, lor.copy(), text_3, lor.copy(), text_4, lor.copy(), text_5, lor.copy(), lor.copy(), text_6, lor.copy(), text_7, lor.copy() text_8)
 
         self.play(FadeIn(title_1))
         self.wait()
         self.play(table.animate.shift(LEFT))
         
-        text_gr.next_to(table, RIGHT)
+        text_1.next_to(table, RIGHT)
         self.wait()
 
 
@@ -476,20 +467,22 @@ class KarnaughMapM4(Scene):
 
         self.play(Create(boxes))
         self.wait()
-        self.play(Write(text_gr))
+        self.play(Write(text_1))
         self.wait()
         self.play(FadeOut(boxes, table))
         self.wait()
         self.play(text_1.animate.move_to(Point()))
         self.wait()
+        self.play(FadeOut(title_1, text_1))
 
-        # title_1 = Title('Составление ДНФ. Карты Карно', tex_template=MY_TEMPLATE)
-        # self.play(FadeIn(title_1))
-        # self.wait()
+        title_1 = Title('Составление ДНФ. Карты Карно', tex_template=MY_TEMPLATE)
+        self.play(FadeIn(title_1))
+        self.wait()
 
-        # self.play(table.animate.shift(LEFT))
-        # self.play(karnaugh_map_2.create())
-        # self.wait()
+        karnaugh_map_2.scale(1.0)
+
+        self.play(karnaugh_map_2.create())
+        self.wait()
         
         # gr = VGroup(karnaugh_map_2.get_rows()[-1][1:])
         # box_1 = SurroundingRectangle(gr, corner_radius=0.2)
