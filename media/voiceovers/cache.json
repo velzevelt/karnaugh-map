@@ -205,5 +205,77 @@
     },
     "original_audio": "SDNF_M=2_KARNO.mp3",
     "final_audio": "SDNF_M=2_KARNO.mp3"
+  },
+  {
+    "input_text": "KARNO CONSTRUCT M=2",
+    "input_data": {
+      "input_text": "KARNO CONSTRUCT M=2",
+      "service": "gtts"
+    },
+    "original_audio": "KARNO_CONSTRUCT_M=2.mp3",
+    "final_audio": "KARNO_CONSTRUCT_M=2.mp3"
+  },
+  {
+    "input_text": "ARROW COORD M=2",
+    "input_data": {
+      "input_text": "ARROW COORD M=2",
+      "service": "gtts"
+    },
+    "original_audio": "ARROW_COORD.mp3",
+    "final_audio": "ARROW_COORD.mp3"
+  },
+  {
+    "input_text": "SDNF M=2 ALGEBRA",
+    "input_data": {
+      "input_text": "SDNF M=2 ALGEBRA",
+      "service": "gtts"
+    },
+    "original_audio": "SDNF_M=2_ALGEBRA.mp3",
+    "final_audio": "SDNF_M=2_ALGEBRA.mp3"
+  },
+  {
+    "input_text": "SDNF M=2 KARNO",
+    "input_data": {
+      "input_text": "SDNF M=2 KARNO",
+      "service": "gtts"
+    },
+    "original_audio": "SDNF_M=2_KARNO.mp3",
+    "final_audio": "SDNF_M=2_KARNO.mp3"
+  },
+  {
+    "input_text": "KARNO CONSTRUCT M=2",
+    "input_data": {
+      "input_text": "KARNO CONSTRUCT M=2",
+      "service": "gtts"
+    },
+    "original_audio": "KARNO_CONSTRUCT_M=2.mp3",
+    "final_audio": "KARNO_CONSTRUCT_M=2.mp3"
+  },
+  {
+    "input_text": "ARROW COORD M=2",
+    "input_data": {
+      "input_text": "ARROW COORD M=2",
+      "service": "gtts"
+    },
+    "original_audio": "ARROW_COORD.mp3",
+    "final_audio": "ARROW_COORD.mp3"
+  },
+  {
+    "input_text": "SDNF M=2 ALGEBRA",
+    "input_data": {
+      "input_text": "SDNF M=2 ALGEBRA",
+      "service": "gtts"
+    },
+    "original_audio": "SDNF_M=2_ALGEBRA.mp3",
+    "final_audio": "SDNF_M=2_ALGEBRA.mp3"
+  },
+  {
+    "input_text": "SDNF M=2 KARNO",
+    "input_data": {
+      "input_text": "SDNF M=2 KARNO",
+      "service": "gtts"
+    },
+    "original_audio": "SDNF_M=2_KARNO.mp3",
+    "final_audio": "SDNF_M=2_KARNO.mp3"
   }
 ]
