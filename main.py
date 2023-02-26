@@ -292,13 +292,13 @@ class KarnaughMapM2(Scene):
         self.play(FadeOut(title_1, karnaugh_map))
         # Новый фрагмент
 
-        title_1 = Title('Составление ДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
+        title_1 = Title('Составление СДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
         self.play(FadeIn(title_1))
         self.wait()
 
         gr = VGroup(table.get_columns()[1:][0][3:], table.get_columns()[1:][1][3:], table.get_columns()[1:][2][3:])
         box_1 = SurroundingRectangle(gr, corner_radius=0.2)
-        text_1 = Tex(r"${X_{1}}$")
+        text_1 = Tex(r"${F_{(СДНФ)} = X_{1}}$", tex_template=MY_TEMPLATE)
         text_1.next_to(box_1.get_corner(UR) - 0.3, RIGHT, buff=1.0)
         
         self.play(Create(box_1))
@@ -307,7 +307,7 @@ class KarnaughMapM2(Scene):
         self.wait()
         self.play(FadeOut(title_1, box_1, text_1))
 
-        title_1 = Title('Составление ДНФ. Карты Карно', tex_template=MY_TEMPLATE)
+        title_1 = Title('Составление СДНФ. Карты Карно', tex_template=MY_TEMPLATE)
         self.play(FadeIn(title_1))
         self.wait()
 
@@ -437,43 +437,43 @@ class KarnaughMapM4(Scene):
         self.play(FadeOut(title_1, karnaugh_map))
         # Новый фрагмент
 
-        title_1 = Title('Составление ДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
-        text_1 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} \bar X_{4} \lor \bar X_{1} X_{2} \bar X_{3} X_{4}}$ \\ ${\lor \bar X_{1} X_{2} X_{3} \bar X_{4} \lor \bar X_{1} X_{2} X_{3} X_{4}}$ \\ ${\lor X_{1} \bar X_{2} \bar X_{3} X_{4} \lor X_{1} \bar X_{2} X_{3} X_{4}}$ \\ $\lor {X_{1} X_{2} X_{3} \bar X_{4} \lor X_{1} X_{2} X_{3} X_{4}}$")
+        # title_1 = Title('Составление СДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
+        # text_1 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} \bar X_{4} \lor \bar X_{1} X_{2} \bar X_{3} X_{4}}$ \\ ${\lor \bar X_{1} X_{2} X_{3} \bar X_{4} \lor \bar X_{1} X_{2} X_{3} X_{4}}$ \\ ${\lor X_{1} \bar X_{2} \bar X_{3} X_{4} \lor X_{1} \bar X_{2} X_{3} X_{4}}$ \\ $\lor {X_{1} X_{2} X_{3} \bar X_{4} \lor X_{1} X_{2} X_{3} X_{4}}$")
         
 
 
-        self.play(FadeIn(title_1))
-        self.wait()
-        self.play(table.animate.shift(LEFT))
+        # self.play(FadeIn(title_1))
+        # self.wait()
+        # self.play(table.animate.shift(LEFT))
         
-        text_1.next_to(table, RIGHT)
-        self.wait()
+        # text_1.next_to(table, RIGHT)
+        # self.wait()
 
 
-        gr = []
-        rows = table.get_rows()[1:]
-        for i, temp in enumerate(function_result):
-            if temp == 1:
-                if function_result[i - 1] == 0:
-                    gr.append( rows[i][1:] )
-                else:
-                    gr[-1] = VGroup(gr[-1], rows[i][1:])
+        # gr = []
+        # rows = table.get_rows()[1:]
+        # for i, temp in enumerate(function_result):
+        #     if temp == 1:
+        #         if function_result[i - 1] == 0:
+        #             gr.append( rows[i][1:] )
+        #         else:
+        #             gr[-1] = VGroup(gr[-1], rows[i][1:])
 
-        boxes = [SurroundingRectangle(g, corner_radius=0.2) for g in gr]
+        # boxes = [SurroundingRectangle(g, corner_radius=0.2) for g in gr]
 
-        boxes = VGroup(*boxes)
+        # boxes = VGroup(*boxes)
 
-        self.play(Create(boxes))
-        self.wait()
-        self.play(Write(text_1))
-        self.wait()
-        self.play(FadeOut(boxes, table))
-        self.wait()
-        self.play(text_1.animate.move_to(Point()))
-        self.wait()
-        self.play(FadeOut(title_1, text_1))
+        # self.play(Create(boxes))
+        # self.wait()
+        # self.play(Write(text_1))
+        # self.wait()
+        # self.play(FadeOut(boxes, table))
+        # self.wait()
+        # self.play(text_1.animate.move_to(Point()))
+        # self.wait()
+        # self.play(FadeOut(title_1, text_1))
 
-        title_1 = Title('Составление ДНФ. Карты Карно', tex_template=MY_TEMPLATE)
+        title_1 = Title('Составление СДНФ. Карты Карно', tex_template=MY_TEMPLATE)
         self.play(FadeIn(title_1))
         self.wait()
 
@@ -530,10 +530,12 @@ class KarnaughMapM4(Scene):
         self.play(gr.animate.shift(UP))
         self.wait()
 
-        total_tex = MathTex(r'S = S_{1} \lor S_{2} \lor S_{3} \lor S_{4}')
+        total_tex = MathTex(r'F_{(СДНФ)} = \bar X_{1} X_{2} \lor X_{2} X_{3} \lor X_{1} \bar X_{2}', tex_template=MY_TEMPLATE)
+        total_tex_2 = MathTex(r'F_{(СДНФ)} = S_{1} \lor S_{2} \lor S_{3} \lor S_{4}', tex_template=MY_TEMPLATE)
         total_tex.next_to(func_4, DOWN, buff=0.5)
         total_tex.shift(np.array([0.5, 0., 0.]))
-        self.play(Write(total_tex))
+        total_tex_2.next_to(total_tex_1, DOWN, buff=0.25)
+        self.play(Write(total_tex, total_tex_2))
         self.wait()
-        self.play(FadeOut(title_1, total_tex, karnaugh_map_2, *[func_1, func_2, func_3, func_4], *[arrow_1, arrow_2, arrow_3, arrow_4], *[tex_1, tex_2, tex_3, tex_4], *[box_1, box_2, box_3, box_4]))
+        self.play(FadeOut(title_1, total_tex, total_tex_2, karnaugh_map_2, *[func_1, func_2, func_3, func_4], *[arrow_1, arrow_2, arrow_3, arrow_4], *[tex_1, tex_2, tex_3, tex_4], *[box_1, box_2, box_3, box_4]))
         self.wait()
