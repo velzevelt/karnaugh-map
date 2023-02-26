@@ -486,16 +486,24 @@ class KarnaughMapM4(Scene):
         self.play(karnaugh_map_2.animate.to_edge(LEFT, buff=1.0))
         self.wait()
         
-        gr = [karnaugh_map_2.get_rows()[2][1:], karnaugh_map_2.get_columns()[3][2:1]]
-        box_1 = SurroundingRectangle(gr[1], corner_radius=0.2)
-        self.play(Create(box_1))
+        gr = [karnaugh_map_2.get_rows()[2][1:], VGroup(karnaugh_map_2.get_columns()[3][2:4], karnaugh_map_2.get_columns()[4][2:4]), karnaugh_map_2.get_columns()[2][-1], karnaugh_map_2.get_columns()[-1][-1]]
+        box_1 = SurroundingRectangle(gr[0], corner_radius=0.2)
+        box_2 = SurroundingRectangle(gr[1], corner_radius=0.2, color=GREEN).scale(1.1)
+        box_3 = SurroundingRectangle(gr[2], corner_radius=0.2, color=RED)
+        box_4 = SurroundingRectangle(gr[3], corner_radius=0.2, color=BLUE)
+        
+        boxes = [box_1, box_2, box_3, box_4]
+        boxes = AnimationGroup(*[Create(i) for i in boxes], lag_ratio=2)
+
+        self.play(boxes)
         self.wait()
-        # gr = VGroup(karnaugh_map_2.get_rows()[-1][1:])
-        # box_1 = SurroundingRectangle(gr, corner_radius=0.2)
+        
+        tex_1 = Tex("$S_{1}$", color=YELLOW)
+        tex_2 = Tex("$S_{2}$", color=GREEN)
+        tex_3 = Tex("$S_{3}$", color=RED)
+        tex_4 = Tex("$S_{4}$", color=BLUE)
 
-        # text_1.next_to(box_1, DOWN, buff=0.5)
-        # self.play(Create(box_1))
-        # self.wait()
-        # self.play(Write(text_1))
-        # self.wait()
+        tex_1.next_to(title_1, DOWN, buff=1.5)
 
+        self.play(Create(tex_1))
+        self.wait()
