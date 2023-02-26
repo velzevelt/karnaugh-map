@@ -395,7 +395,7 @@ class KarnaughMapM4(Scene):
 
         # self.play(FadeIn(title_1))
         # self.wait()
-        # self.play(table.create())
+        self.play(table.create())
         # self.wait()
         # self.play(karnaugh_map.create())
         # self.wait()
@@ -438,8 +438,24 @@ class KarnaughMapM4(Scene):
         # # Новый фрагмент
 
         title_1 = Title('Составление ДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
-        # self.play(FadeIn(title_1))
-        # self.wait()
+        # text_1 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} \bar X_{4} \lor \bar X_{1} X_{2} \bar X_{3} X_{4}}$ \\ ${\lor \bar X_{1} X_{2} X_{3} \bar X_{4} \lor \bar X_{1} X_{2} X_{3} X_{4}}$ \\ ${\lor X_{1} \bar X_{2} \bar X_{3} X_{4} \lor X_{1} \bar X_{2} X_{3} X_{4}}$ \\ $\lor {X_{1} X_{2} X_{3} \bar X_{4} \lor X_{1} X_{2} X_{3} X_{4}}$")
+        lor = Tex(r"${\lor}$")
+        text_1 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} \bar X_{4}}$")
+        text_2 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} X_{4}}$")
+        text_3 = Tex(r'${\bar X_{1} X_{2} X_{3} \bar X_{4}$}')
+        text_4 = Tex(r'${\bar X_{1} X_{2} X_{3} X_{4}}$')
+        text_5 = Tex(r'${X_{1} \bar X_{2} \bar X_{3} X_{4}}$')
+        text_6 = Tex(r'${X_{1} \bar X_{2} X_{3} X_{4}}$')
+        text_7 = Tex(r'${X_{1} X_{2} X_{3} \bar X_{4}}$')
+        text_8 = Tex(r'${X_{1} X_{2} X_{3} X_{4}}$')
+
+        self.play(FadeIn(title_1))
+        self.wait()
+        self.play(table.animate.shift(LEFT))
+        
+        text_1.next_to(table, RIGHT)
+        self.wait()
+
 
         gr = []
         rows = table.get_rows()[1:]
@@ -453,21 +469,19 @@ class KarnaughMapM4(Scene):
         boxes = [SurroundingRectangle(g, corner_radius=0.2) for g in gr]
 
         boxes = VGroup(*boxes)
-        # t = [c[1:] for c in karnaugh_map.get_rows()[1:]]
 
-        text_1 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} \bar X_{4} \lor \bar X_{1} X_{2} \bar X_{3} X_{4}}$ \\ ${\lor \bar X_{1} X_{2} X_{3} \bar X_{4} \lor \bar X_{1} X_{2} X_{3} X_{4}}$ \\ ${\lor X_{1} \bar X_{2} \bar X_{3} X_{4} \lor X_{1} \bar X_{2} X_{3} X_{4}}$ \\ $\lor {X_{1} X_{2} X_{3} \bar X_{4} \lor X_{1} X_{2} X_{3} X_{4}}$")
-        text_1.next_to(table.get_corner(RIGHT), RIGHT)
-        
-        self.add(table, text_1, title_1)
+        # self.add(table, text_1, title_1)
 
-        # self.play(Create(boxes))
-        # self.wait()
-        # self.play(table.animate.shift(LEFT))
-        # self.wait()
-        # self.play(Write(text_1))
-        # self.wait()
-        # self.wait()
-        # self.play(FadeOut(title_1, boxes, text_1))
+        self.play(Create(boxes))
+        self.wait()
+        self.play(Write(text_1))
+        self.wait()
+        self.play(FadeOut(boxes, table))
+        self.wait()
+        self.play(text_1.animate.move_to(Point()))
+        self.wait()
+        underline = Underline(text_1)
+        self.play(Create(underline))
 
         # title_1 = Title('Составление ДНФ. Карты Карно', tex_template=MY_TEMPLATE)
         # self.play(FadeIn(title_1))
