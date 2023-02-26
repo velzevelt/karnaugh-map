@@ -429,6 +429,8 @@ class KarnaughMapM4(VoiceoverScene):
             line_config={'stroke_width': 1},
         )
         
+        # self.add(karnaugh_map_2)
+
         karnaugh_map_2.scale(0.5)
         Group(table, karnaugh_map).scale(0.5).arrange_in_grid(buff=1)
         
