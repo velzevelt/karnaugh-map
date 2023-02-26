@@ -393,8 +393,8 @@ class KarnaughMapM4(Scene):
         Group(table, karnaugh_map).scale(0.5).arrange_in_grid(buff=1)
         
 
-        self.play(FadeIn(title_1))
-        self.wait()
+        # self.play(FadeIn(title_1))
+        # self.wait()
         self.play(table.create())
         # self.wait()
         # self.play(karnaugh_map.create())
@@ -479,9 +479,11 @@ class KarnaughMapM4(Scene):
         self.play(FadeIn(title_1))
         self.wait()
 
-        karnaugh_map_2.scale(1.0)
+        karnaugh_map_2.scale(2.0)
+        karnaugh_map_2.move_to(Point())
 
         self.play(karnaugh_map_2.create())
+        self.play(karnaugh_map_2.animate.shift(LEFT * 2))
         self.wait()
         
         # gr = VGroup(karnaugh_map_2.get_rows()[-1][1:])
