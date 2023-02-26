@@ -531,14 +531,15 @@ class KarnaughMapM4(Scene):
         self.wait()
 
         total_tex = MathTex(r'F = S_{1} \lor S_{2} \lor S_{3} \lor S_{4}', tex_template=MY_TEMPLATE)
-        total_tex_2 = MathTex(r'F = \bar X_{1} X_{2} \lor X_{2} X_{3} \lor X_{1} \bar X_{2}', tex_template=MY_TEMPLATE)
+        total_tex_2 = MathTex(r'F = \bar X_{1} X_{2} \lor X_{2} X_{3} \lor X_{1} \bar X_{2} \bar X_{3} X_{4} \lor X_{3} \bar X_{4}', tex_template=MY_TEMPLATE)
         
         total_tex.next_to(func_4, DOWN, buff=0.5)
         total_tex.shift(np.array([0.5, 0., 0.]))
         
         total_tex_2.next_to(total_tex, DOWN, buff=0.25)
+        total_tex_2.shift(RIGHT)
         
         self.play(Write(total_tex), Write(total_tex_2))
         self.wait()
-        self.play(FadeOut(title_1, total_tex, total_tex_2, karnaugh_map_2, *[func_1, func_2, func_3, func_4], *[arrow_1, arrow_2, arrow_3, arrow_4], *[tex_1, tex_2, tex_3, tex_4], *[box_1, box_2, box_3, box_4]))
-        self.wait()
+        # self.play(FadeOut(title_1, total_tex, total_tex_2, karnaugh_map_2, *[func_1, func_2, func_3, func_4], *[arrow_1, arrow_2, arrow_3, arrow_4], *[tex_1, tex_2, tex_3, tex_4], *[box_1, box_2, box_3, box_4]))
+        # self.wait()
