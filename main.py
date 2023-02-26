@@ -535,3 +535,5 @@ class KarnaughMapM4(Scene):
         total_tex.shift(np.array([0.5, 0., 0.]))
         self.play(Write(total_tex))
         self.wait()
+        self.play(FadeOut(title_1, total_tex, karnaugh_map_2, *[func_1, func_2, func_3, func_4], *[arrow_1, arrow_2, arrow_3, arrow_4], *[tex_1, tex_2, tex_3, tex_4], *[box_1, box_2, box_3, box_4]))
+        self.wait()
