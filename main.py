@@ -94,9 +94,9 @@ class FunctionNormalForms(VoiceoverScene):
         self.wait()
 
 
-class DisjunctiveNormalForm(Scene):
+class DisjunctiveNormalForm(VoiceoverScene):
     def construct(self):
-        
+        self.set_speech_service(GTTSService(lang='ru'))
         title_1 = Title('Дизъюнктивная нормальная форма', tex_template=MY_TEMPLATE)
         
         text_1 = 'Дизъюнктивная нормальная форма (ДНФ) в булевой логике — нормальная форма, в которой булева формула имеет вид дизъюнкции конъюнкций литералов. Любая булева формула может быть приведена к ДНФ.'
@@ -114,18 +114,28 @@ class DisjunctiveNormalForm(Scene):
         example_1 = Tex(example_1)
 
         self.wait()
-        self.play(FadeIn(title_1))
+        with self.voiceover(text="DNF") as tracker:
+            self.play(FadeIn(title_1))
+        
         self.wait()
-        self.play(AddTextLetterByLetter(text_1, run_time=6))
+        
+        with self.voiceover(text="text_1") as tracker:
+            self.play(AddTextLetterByLetter(text_1, run_time=6))
         self.wait()
-        self.play(AddTextLetterByLetter(text_2, run_time=2))
+        
+        with self.voiceover(text="text_2") as tracker:
+            self.play(AddTextLetterByLetter(text_2, run_time=2))
         self.wait()
-        self.play(AddTextLetterByLetter(text_3, run_time=2))
+        
+        with self.voiceover(text="text_3") as tracker:
+            self.play(AddTextLetterByLetter(text_3, run_time=2))
         self.wait()
+        
         self.play(FadeOut(text_1, text_2, text_3, title_1))
         
         title_1 = Title('Примеры ДНФ', tex_template=MY_TEMPLATE)
-        self.play(FadeIn(title_1, example_1))
+        with self.voiceover(text="PRIM DNF") as tracker:
+            self.play(FadeIn(title_1, example_1))
         self.wait()
         self.play(FadeOut(title_1, example_1))
         
@@ -259,8 +269,9 @@ class KarnaughMapM2(Scene):
         
         Group(table, karnaugh_map).arrange_in_grid(buff=1)
         
-
-        self.play(FadeIn(title_1))
+        with self.voiceover(text="KARNO CONSTRUCT M=2") as tracker:
+            self.play(FadeIn(title_1))
+        
         self.wait()
         self.play(table.create())
         self.wait()
@@ -279,18 +290,20 @@ class KarnaughMapM2(Scene):
         self.wait()
         
         # Стрелка от номера к координатам
-        arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
-        self.play(Create(arrow_1))
+        with self.voiceover(text="ARROW COORD M=2") as tracker:
+            arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
+            self.play(Create(arrow_1))
         self.wait()
         
         self.play(FadeOut(box_1, arrow_1))
         
         ## Подстановка значений в координаты. Объяснение
-        box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
-        arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
-        self.play(Create(box_1))
-        self.play(Create(arrow_1))
-        self.wait()
+        with self.voiceover(text="PUT VALUES M=2") as tracker:
+            box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
+            arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
+            self.play(Create(box_1))
+            self.play(Create(arrow_1))
+            self.wait()
 
         karnaugh_map_2.move_to(karnaugh_map.get_center())
         self.play(karnaugh_map.animate.become(karnaugh_map_2))
@@ -303,8 +316,9 @@ class KarnaughMapM2(Scene):
         self.play(FadeOut(title_1, karnaugh_map))
         # Новый фрагмент
 
-        title_1 = Title('Составление СДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
-        self.play(FadeIn(title_1))
+        with self.voiceover(text="SDNF M=2 ALGEBRA") as tracker:
+            title_1 = Title('Составление СДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
+            self.play(FadeIn(title_1))
         self.wait()
 
         gr = VGroup(table.get_columns()[1:][0][3:], table.get_columns()[1:][1][3:], table.get_columns()[1:][2][3:])
@@ -327,8 +341,9 @@ class KarnaughMapM2(Scene):
         self.wait()
         self.play(FadeOut(title_1, box_1, text_1))
 
-        title_1 = Title('Составление СДНФ. Карта Карно', tex_template=MY_TEMPLATE)
-        self.play(FadeIn(title_1))
+        with self.voiceover(text="SDNF M=2 KARNO") as tracker:
+            title_1 = Title('Составление СДНФ. Карта Карно', tex_template=MY_TEMPLATE)
+            self.play(FadeIn(title_1))
         self.wait()
 
         self.play(table.animate.shift(LEFT))
