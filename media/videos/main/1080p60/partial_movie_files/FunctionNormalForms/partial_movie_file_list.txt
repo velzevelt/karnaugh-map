@@ -11,3 +11,4 @@ file 'file:/home/velz/Документы/karnaugh-map/media/videos/main/1080p60/
 file 'file:/home/velz/Документы/karnaugh-map/media/videos/main/1080p60/partial_movie_files/FunctionNormalForms/uncached_00009.mp4'
 file 'file:/home/velz/Документы/karnaugh-map/media/videos/main/1080p60/partial_movie_files/FunctionNormalForms/uncached_00010.mp4'
 file 'file:/home/velz/Документы/karnaugh-map/media/videos/main/1080p60/partial_movie_files/FunctionNormalForms/uncached_00011.mp4'
+file 'file:/home/velz/Документы/karnaugh-map/media/videos/main/1080p60/partial_movie_files/FunctionNormalForms/uncached_00012.mp4'

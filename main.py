@@ -62,7 +62,7 @@ MY_TEMPLATE = TexTemplate(preamble=PRE)
 
 class FunctionNormalForms(VoiceoverScene):
     def construct(self):
-        self.set_speech_service(GTTSService(lang='ru'))
+        self.set_speech_service(GTTSService(lang='en'))
 
         title_1 = Title('Нормальные формы в логике', tex_template=MY_TEMPLATE)
         
@@ -91,6 +91,7 @@ class FunctionNormalForms(VoiceoverScene):
         
         self.wait()
         self.play(FadeOut(title_1, text_1, text_2))
+        self.wait()
         self.wait()
 
 
@@ -304,10 +305,10 @@ class KarnaughMapM2(VoiceoverScene):
             self.play(Create(box_1))
             self.play(Create(arrow_1))
             self.wait()
-            karnaugh_map_2.move_to(karnaugh_map.get_center())
-            self.play(karnaugh_map.animate.become(karnaugh_map_2))
-            self.wait()
-            self.wait()
+        karnaugh_map_2.move_to(karnaugh_map.get_center())
+        self.play(karnaugh_map.animate.become(karnaugh_map_2))
+        self.wait()
+        self.wait()
         
         # Завершение сцены
         self.play(FadeOut(box_1, arrow_1, box_2))
