@@ -517,15 +517,10 @@ class KarnaughMapM4(Scene):
         self.play(texes, arrows)
         self.wait()
 
-        func_1 = MathTex(r'\bar X_{1} X_{2}')
-        func_2 = MathTex(r'X_{2} X_{3}')
-        func_3 = MathTex(r'X_{1} \bar X_{2} \bar X_{3} X_{4}')
-        func_4 = MathTex(r'X_{1} \bar X_{2} X_{3} \bar X_{4}')
-
-        func_1.next_to(tex_1)
-        func_2.next_to(tex_2)
-        func_3.next_to(tex_3)
-        func_4.next_to(tex_4)
+        func_1 = always_redraw(lambda: MathTex(r'\bar X_{1} X_{2}').next_to(tex_1))
+        func_2 = always_redraw(lambda: MathTex(r'X_{2} X_{3}').next_to(tex_2))
+        func_3 = always_redraw(lambda: MathTex(r'X_{1} \bar X_{2} \bar X_{3} X_{4}').next_to(tex_3))
+        func_4 = always_redraw(lambda: MathTex(r'X_{1} \bar X_{2} X_{3} \bar X_{4}').next_to(tex_4))
 
         funcs = [func_1, func_2, func_3, func_4]
         funcs = AnimationGroup(*[Write(i) for i in funcs], lag_ratio=1)
@@ -535,4 +530,9 @@ class KarnaughMapM4(Scene):
         
         gr = VGroup(tex_1, tex_2, tex_3, tex_4)
         self.play(gr.animate.shift(UP))
+        self.wait()
+
+        total_tex = MathTex(r'S = S_{1} \lor S_{2} \lor S_{3} \lor S_{4}')
+        total_tex.next_to(func_4, DOWN, buff=0.5)
+        self.play(total_tex)
         self.wait()
