@@ -342,6 +342,7 @@ class KarnaughMapM2(VoiceoverScene):
         self.wait()
         self.play(FadeOut(title_1, box_1, text_1))
 
+
         with self.voiceover(text="SDNF M=2 KARNO") as tracker:
             title_1 = Title('Составление СДНФ. Карта Карно', tex_template=MY_TEMPLATE)
             self.play(FadeIn(title_1))
@@ -358,6 +359,8 @@ class KarnaughMapM2(VoiceoverScene):
         self.play(Create(box_1))
         self.wait()
         self.play(Write(text_1))
+        self.wait()
+        self.play(FadeOut(text_1, box_1, table, karnaugh_map_2, title_1))
         self.wait()
 
 
