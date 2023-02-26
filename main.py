@@ -449,11 +449,13 @@ class KarnaughMapM4(Scene):
         text_7 = Tex(r'${X_{1} X_{2} X_{3} \bar X_{4}}$')
         text_8 = Tex(r'${X_{1} X_{2} X_{3} X_{4}}$')
 
+        text_gr = VGroup(text_1, lor.copy(), text_2, lor.copy(), text_3, lor.copy(), text_4, lor.copy(), text_5, lor.copy(), lor.copy(), text_6, lor.copy(), text_7, lor.copy() text_8)
+
         self.play(FadeIn(title_1))
         self.wait()
         self.play(table.animate.shift(LEFT))
         
-        text_1.next_to(table, RIGHT)
+        text_gr.next_to(table, RIGHT)
         self.wait()
 
 
@@ -474,14 +476,12 @@ class KarnaughMapM4(Scene):
 
         self.play(Create(boxes))
         self.wait()
-        self.play(Write(text_1))
+        self.play(Write(text_gr))
         self.wait()
         self.play(FadeOut(boxes, table))
         self.wait()
         self.play(text_1.animate.move_to(Point()))
         self.wait()
-        underline = Underline(text_1)
-        self.play(Create(underline))
 
         # title_1 = Title('Составление ДНФ. Карты Карно', tex_template=MY_TEMPLATE)
         # self.play(FadeIn(title_1))
