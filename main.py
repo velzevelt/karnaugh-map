@@ -307,7 +307,7 @@ class KarnaughMapM2(Scene):
         self.wait()
         self.play(FadeOut(title_1, box_1, text_1))
 
-        title_1 = Title('Составление СДНФ. Карты Карно', tex_template=MY_TEMPLATE)
+        title_1 = Title('Составление СДНФ. Карта Карно', tex_template=MY_TEMPLATE)
         self.play(FadeIn(title_1))
         self.wait()
 
@@ -473,7 +473,7 @@ class KarnaughMapM4(Scene):
         # self.wait()
         # self.play(FadeOut(title_1, text_1))
 
-        title_1 = Title('Составление СДНФ. Карты Карно', tex_template=MY_TEMPLATE)
+        title_1 = Title('Составление СДНФ. Карта Карно', tex_template=MY_TEMPLATE)
         self.play(FadeIn(title_1))
         self.wait()
 
@@ -509,7 +509,7 @@ class KarnaughMapM4(Scene):
         arrow_4 = always_redraw(lambda: Arrow(start=box_4, end=tex_4, color=BLUE))
 
         texes = AnimationGroup(*[Write(i) for i in [tex_1, tex_2, tex_3, tex_4]], lag_ratio=1)
-        arrows = [arrow_1, arrow_2, arrow_3, arrow_4]
+        arrows = [arrow_1, arrow_4, arrow_3, arrow_2]
         arrows = AnimationGroup(*[Create(i) for i in arrows], lag_ratio=1)
 
         self.play(texes, arrows)
