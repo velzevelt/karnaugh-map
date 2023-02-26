@@ -76,17 +76,17 @@ class FunctionNormalForms(VoiceoverScene):
 
         self.wait()
         
-        with self.voiceover(text="Нормальные формы в логике.") as tracker:
+        with self.voiceover(text="Title 1") as tracker:
             self.play(FadeIn(title_1))
         
         self.wait()
         
-        with self.voiceover(text="Формула в булевой логике может быть записана в дизъюнктивной и в конъюнктивной нормальной форме.") as tracker:
+        with self.voiceover(text="Text 1") as tracker:
             self.play(AddTextLetterByLetter(text_1, run_time=2))
         
         self.wait()
         
-        with self.voiceover(text="Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму.") as tracker:
+        with self.voiceover(text="Text 2") as tracker:
             self.play(AddTextLetterByLetter(text_2, run_time=2))
         
         self.wait()
