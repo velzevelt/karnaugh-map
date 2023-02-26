@@ -208,8 +208,10 @@ class DisjunctiveNormalForm(VoiceoverScene):
         self.wait()
 
 
-class KarnaughMapM2(Scene):
+class KarnaughMapM2(VoiceoverScene):
     def construct(self):
+        self.set_speech_service(GTTSService(lang='en'))
+
         title_1 = Title('Составление карты Карно. M=2', tex_template=MY_TEMPLATE)
         var_qty = 2
         column_size = 2 ** var_qty
@@ -290,24 +292,22 @@ class KarnaughMapM2(Scene):
         self.wait()
         
         # Стрелка от номера к координатам
-        with self.voiceover(text="ARROW COORD M=2") as tracker:
-            arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
-            self.play(Create(arrow_1))
+        arrow_1 = Arrow(start=table.get_row_labels()[0], end=karnaugh_map.get_columns()[1][1])
+        self.play(Create(arrow_1))
         self.wait()
         
         self.play(FadeOut(box_1, arrow_1))
         
-        ## Подстановка значений в координаты. Объяснение
-        with self.voiceover(text="PUT VALUES M=2") as tracker:
-            box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
-            arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
+        box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
+        arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
+        with self.voiceover(text="ARROW COORD M=2") as tracker:
             self.play(Create(box_1))
             self.play(Create(arrow_1))
             self.wait()
-
-        karnaugh_map_2.move_to(karnaugh_map.get_center())
-        self.play(karnaugh_map.animate.become(karnaugh_map_2))
-        self.wait()
+            karnaugh_map_2.move_to(karnaugh_map.get_center())
+            self.play(karnaugh_map.animate.become(karnaugh_map_2))
+            self.wait()
+            self.wait()
         
         # Завершение сцены
         self.play(FadeOut(box_1, arrow_1, box_2))
@@ -360,8 +360,9 @@ class KarnaughMapM2(Scene):
         self.wait()
 
 
-class KarnaughMapM4(Scene):
+class KarnaughMapM4(VoiceoverScene):
     def construct(self):
+        self.set_speech_service(GTTSService(lang='en'))
         title_1 = Title('Составление карты Карно. M=4', tex_template=MY_TEMPLATE)
         var_qty = 4
         column_size = 2 ** var_qty
@@ -427,8 +428,9 @@ class KarnaughMapM4(Scene):
         karnaugh_map_2.scale(0.5)
         Group(table, karnaugh_map).scale(0.5).arrange_in_grid(buff=1)
         
-
-        self.play(FadeIn(title_1))
+        self.wait()
+        with self.voiceover(text="KARNO CONSTRUCT M=4") as tracker:
+            self.play(FadeIn(title_1))
         self.wait()
         self.play(table.create())
         self.wait()
@@ -455,10 +457,11 @@ class KarnaughMapM4(Scene):
         self.play(FadeOut(box_1, arrow_1))
         
         # Подстановка значений в координаты. Объяснение
-        box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
-        arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
-        self.play(Create(box_1))
-        self.play(Create(arrow_1))
+        with self.voiceover(text="ATTENTION M=4") as tracker:
+            box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
+            arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
+            self.play(Create(box_1))
+            self.play(Create(arrow_1))
         self.wait()
 
         karnaugh_map_2.move_to(karnaugh_map.get_center())
@@ -509,7 +512,8 @@ class KarnaughMapM4(Scene):
         # self.play(FadeOut(title_1, text_1))
 
         title_1 = Title('Составление СДНФ. Карта Карно', tex_template=MY_TEMPLATE)
-        self.play(FadeIn(title_1))
+        with self.voiceover(text="SDNF M=4 KARNO") as tracker:
+            self.play(FadeIn(title_1))
         self.wait()
 
         karnaugh_map_2.scale(2.0)
