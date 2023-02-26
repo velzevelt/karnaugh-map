@@ -395,7 +395,7 @@ class KarnaughMapM4(Scene):
 
         # self.play(FadeIn(title_1))
         # self.wait()
-        self.play(table.create())
+        # self.play(table.create())
         # self.wait()
         # self.play(karnaugh_map.create())
         # self.wait()
@@ -442,12 +442,12 @@ class KarnaughMapM4(Scene):
         
 
 
-        self.play(FadeIn(title_1))
-        self.wait()
-        self.play(table.animate.shift(LEFT))
+        # self.play(FadeIn(title_1))
+        # self.wait()
+        # self.play(table.animate.shift(LEFT))
         
-        text_1.next_to(table, RIGHT)
-        self.wait()
+        # text_1.next_to(table, RIGHT)
+        # self.wait()
 
 
         gr = []
@@ -465,27 +465,31 @@ class KarnaughMapM4(Scene):
 
         # self.add(table, text_1, title_1)
 
-        self.play(Create(boxes))
-        self.wait()
-        self.play(Write(text_1))
-        self.wait()
-        self.play(FadeOut(boxes, table))
-        self.wait()
-        self.play(text_1.animate.move_to(Point()))
-        self.wait()
-        self.play(FadeOut(title_1, text_1))
+        # self.play(Create(boxes))
+        # self.wait()
+        # self.play(Write(text_1))
+        # self.wait()
+        # self.play(FadeOut(boxes, table))
+        # self.wait()
+        # self.play(text_1.animate.move_to(Point()))
+        # self.wait()
+        # self.play(FadeOut(title_1, text_1))
 
         title_1 = Title('Составление ДНФ. Карты Карно', tex_template=MY_TEMPLATE)
         self.play(FadeIn(title_1))
         self.wait()
 
         karnaugh_map_2.scale(2.0)
-        karnaugh_map_2.move_to(Point())
+        karnaugh_map_2.next_to(title_1, DOWN, buff=0.6)
 
         self.play(karnaugh_map_2.create())
-        self.play(karnaugh_map_2.animate.shift(LEFT * 2))
+        self.play(karnaugh_map_2.animate.to_edge(LEFT, buff=1.0))
         self.wait()
         
+        gr = [karnaugh_map_2.get_rows()[2][1:], ]
+        box_1 = SurroundingRectangle(gr, corner_radius=0.2)
+        self.play(Create(box_1))
+        self.wait()
         # gr = VGroup(karnaugh_map_2.get_rows()[-1][1:])
         # box_1 = SurroundingRectangle(gr, corner_radius=0.2)
 
