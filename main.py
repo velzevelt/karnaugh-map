@@ -529,13 +529,14 @@ class KarnaughMapM4(VoiceoverScene):
         self.play(karnaugh_map_2.animate.to_edge(LEFT, buff=1.0))
         self.wait()
         
-        gr = [karnaugh_map_2.get_rows()[2][1:], VGroup(karnaugh_map_2.get_columns()[3][2:4], karnaugh_map_2.get_columns()[4][2:4]), karnaugh_map_2.get_columns()[2][-1], karnaugh_map_2.get_columns()[-1][2:5]]
+        gr = [karnaugh_map_2.get_rows()[2][1:], VGroup(karnaugh_map_2.get_columns()[3][2:4], karnaugh_map_2.get_columns()[4][2:4]), karnaugh_map_2.get_columns()[2][-1], VGroup(karnaugh_map_2.get_columns()[-1][-2], karnaugh_map_2.get_columns()[-1][-1]), VGroup(karnaugh_map_2.get_columns()[-1][-3], karnaugh_map_2.get_columns()[-1][-2])]
         box_1 = SurroundingRectangle(gr[0], corner_radius=0.2)
         box_2 = SurroundingRectangle(gr[1], corner_radius=0.2, color=GREEN).scale(1.1)
         box_3 = SurroundingRectangle(gr[2], corner_radius=0.2, color=RED)
         box_4 = SurroundingRectangle(gr[3], corner_radius=0.2, color=BLUE).scale(1.15)
+        box_5 = SurroundingRectangle(gr[4], corner_radius=0.2, color=PURPLE).scale(1.20)
         
-        boxes = [box_1, box_2, box_3, box_4]
+        boxes = [box_1, box_2, box_3, box_4, box_5]
         boxes = AnimationGroup(*[Create(i) for i in boxes], lag_ratio=2)
 
         self.play(boxes)
@@ -545,16 +546,18 @@ class KarnaughMapM4(VoiceoverScene):
         tex_2 = Tex("$S_{2}$", color=GREEN)
         tex_3 = Tex("$S_{3}$", color=RED)
         tex_4 = Tex("$S_{4}$", color=BLUE)
+        tex_5 = Tex("$S_{4}$", color=PURPLE)
 
-        VGroup(tex_1, tex_2, tex_3, tex_4).arrange(DOWN).next_to(karnaugh_map_2, buff=1.0)
+        VGroup(tex_1, tex_2, tex_3, tex_4, tex_5).arrange(DOWN).next_to(karnaugh_map_2, buff=1.0)
 
         arrow_1 = always_redraw(lambda: Arrow(start=box_1, end=tex_1, color=YELLOW))
         arrow_2 = always_redraw(lambda: Arrow(start=box_2.get_corner(RIGHT), end=tex_2, color=GREEN))
         arrow_3 = always_redraw(lambda: Arrow(start=box_3, end=tex_3, color=RED))
         arrow_4 = always_redraw(lambda: Arrow(start=box_4.get_corner(DR), end=tex_4, color=BLUE))
+        arrow_5 = always_redraw(lambda: Arrow(start=box_5.get_corner(DR), end=tex_5, color=PURPLE))
 
-        texes = AnimationGroup(*[Write(i) for i in [tex_1, tex_2, tex_3, tex_4]], lag_ratio=1)
-        arrows = [arrow_1, arrow_2, arrow_3, arrow_4]
+        texes = AnimationGroup(*[Write(i) for i in [tex_1, tex_2, tex_3, tex_4, tex_5]], lag_ratio=1)
+        arrows = [arrow_1, arrow_2, arrow_3, arrow_4, arrow_5]
         arrows = AnimationGroup(*[Create(i) for i in arrows], lag_ratio=1)
 
         self.play(texes, arrows)
@@ -563,15 +566,16 @@ class KarnaughMapM4(VoiceoverScene):
         func_1 = always_redraw(lambda: MathTex(r'\bar X_{1} X_{2}').next_to(tex_1))
         func_2 = always_redraw(lambda: MathTex(r'X_{2} X_{3}').next_to(tex_2))
         func_3 = always_redraw(lambda: MathTex(r'X_{1} \bar X_{2} \bar X_{3} X_{4}').next_to(tex_3))
-        func_4 = always_redraw(lambda: MathTex(r'X_{3} \bar X_{4}').next_to(tex_4))
+        func_4 = always_redraw(lambda: MathTex(r'X_{1} X_{3} \bar X_{4}').next_to(tex_4))
+        func_5 = always_redraw(lambda: MathTex(r'X_{2} X_{3} \bar X_{4}').next_to(tex_5))
 
-        funcs = [func_1, func_2, func_3, func_4]
+        funcs = [func_1, func_2, func_3, func_4, func_5]
         funcs = AnimationGroup(*[Write(i) for i in funcs], lag_ratio=1)
 
         self.play(funcs)
         self.wait()
         
-        gr = VGroup(tex_1, tex_2, tex_3, tex_4)
+        gr = VGroup(tex_1, tex_2, tex_3, tex_4, tex_5)
         self.play(gr.animate.shift(UP))
         self.wait()
 
@@ -582,7 +586,7 @@ class KarnaughMapM4(VoiceoverScene):
         
         self.play(Write(total_tex))
         self.wait()
-        self.play(FadeOut(title_1, total_tex, karnaugh_map_2, *[func_1, func_2, func_3, func_4], *[arrow_1, arrow_2, arrow_3, arrow_4], *[tex_1, tex_2, tex_3, tex_4], *[box_1, box_2, box_3, box_4]))
+        self.play(FadeOut(title_1, total_tex, karnaugh_map_2, *[func_1, func_2, func_3, func_4, func_5], *[arrow_1, arrow_2, arrow_3, arrow_4, arrow_5], *[tex_1, tex_2, tex_3, tex_4, tex_5], *[box_1, box_2, box_3, box_4, box_5]))
         self.wait()
 
 
