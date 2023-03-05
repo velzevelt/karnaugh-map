@@ -1,4 +1,8 @@
 # videos.txt
-file 'FunctionNormalForms.mkv'
-file 'KarnaughMapM2.mkv'
-file 'KarnaughMapM4.mkv'
+# mkv
+# file 'FunctionNormalForms.mkv'
+# file 'KarnaughMapM2.mkv'
+# file 'KarnaughMapM4.mkv'
+file 'FunctionNormalForms.mp4'
+file 'KarnaughMapM2.mp4'
+file 'KarnaughMapM4.mp4'
