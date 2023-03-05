@@ -76,17 +76,17 @@ class FunctionNormalForms(VoiceoverScene):
 
         self.wait()
         
-        with self.voiceover(text="Title 1") as tracker:
+        with self.voiceover(text="TITLE_1") as tracker:
             self.play(FadeIn(title_1))
         
         self.wait()
         
-        with self.voiceover(text="Text 1") as tracker:
+        with self.voiceover(text="TEXT_1") as tracker:
             self.play(AddTextLetterByLetter(text_1, run_time=2))
         
         self.wait()
         
-        with self.voiceover(text="Text 2") as tracker:
+        with self.voiceover(text="TEXT_2") as tracker:
             self.play(AddTextLetterByLetter(text_2, run_time=2))
         
         self.wait()
@@ -272,7 +272,7 @@ class KarnaughMapM2(VoiceoverScene):
         
         Group(table, karnaugh_map).arrange_in_grid(buff=1)
         
-        with self.voiceover(text="KARNO CONSTRUCT M=2") as tracker:
+        with self.voiceover(text="KARNO_CONSTRUCT_M=2") as tracker:
             self.play(FadeIn(title_1))
         
         self.wait()
@@ -301,7 +301,7 @@ class KarnaughMapM2(VoiceoverScene):
         
         box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
         arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
-        with self.voiceover(text="ARROW COORD M=2") as tracker:
+        with self.voiceover(text="ARROW_COORD") as tracker:
             self.play(Create(box_1))
             self.play(Create(arrow_1))
             self.wait()
@@ -317,7 +317,7 @@ class KarnaughMapM2(VoiceoverScene):
         self.play(FadeOut(title_1, karnaugh_map))
         # Новый фрагмент
 
-        with self.voiceover(text="SDNF M=2 ALGEBRA") as tracker:
+        with self.voiceover(text="SDNF_M=2_ALGEBRA") as tracker:
             title_1 = Title('Составление СДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
             self.play(FadeIn(title_1))
         self.wait()
@@ -343,7 +343,7 @@ class KarnaughMapM2(VoiceoverScene):
         self.play(FadeOut(title_1, box_1, text_1))
 
 
-        with self.voiceover(text="SDNF M=2 KARNO") as tracker:
+        with self.voiceover(text="SDNF_M=2_KARNO") as tracker:
             title_1 = Title('Составление СДНФ. Карта Карно', tex_template=MY_TEMPLATE)
             self.play(FadeIn(title_1))
         self.wait()
@@ -435,7 +435,7 @@ class KarnaughMapM4(VoiceoverScene):
         Group(table, karnaugh_map).scale(0.5).arrange_in_grid(buff=1)
         
         self.wait()
-        with self.voiceover(text="KARNO CONSTRUCT M=4") as tracker:
+        with self.voiceover(text="KARNO_CONSTRUCT_M=4") as tracker:
             self.play(FadeIn(title_1))
         self.wait()
         self.play(table.create())
@@ -463,7 +463,7 @@ class KarnaughMapM4(VoiceoverScene):
         self.play(FadeOut(box_1, arrow_1))
         
         # Подстановка значений в координаты. Объяснение
-        with self.voiceover(text="ATTENTION M=4") as tracker:
+        with self.voiceover(text="ARROW_COORD") as tracker:
             box_1 = SurroundingRectangle(table.get_columns()[-1][1:], corner_radius=0.2, color=GREEN)
             arrow_1 = Arrow(start=table.get_columns()[-1][1], end=karnaugh_map.get_columns()[1][1])
             self.play(Create(box_1))
@@ -518,7 +518,7 @@ class KarnaughMapM4(VoiceoverScene):
         # self.play(FadeOut(title_1, text_1))
 
         title_1 = Title('Составление СДНФ. Карта Карно', tex_template=MY_TEMPLATE)
-        with self.voiceover(text="SDNF M=4 KARNO") as tracker:
+        with self.voiceover(text="SDNF_M=4_KARNO") as tracker:
             self.play(FadeIn(title_1))
         self.wait()
 
@@ -590,8 +590,3 @@ class KarnaughMapM4(VoiceoverScene):
         self.wait()
 
 
-class AudioTest(Scene):
-    def construct(self):
-        self.add_sound('test.m4a')
-        self.play(Create(Circle()))
-        self.wait()
