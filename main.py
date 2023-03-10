@@ -4,17 +4,6 @@ from manim_voiceover import VoiceoverScene
 from manim_voiceover.services.gtts import GTTSService
 
 
-def make_text(text, font_size, width_from: MarkupText = None) -> MarkupText:
-    if width_from:
-        res = MarkupText(text)
-        res.font_size = font_size
-        res.width = width_from.width
-    else:
-        res = MarkupText(text)
-        res.font_size = font_size
-    return res
-
-
 def make_truth_table(var_qty: int) -> list:
     column_max_size = 2 ** var_qty
     result = np.zeros(shape=(column_max_size, var_qty), dtype=int)
@@ -68,11 +57,14 @@ class FunctionNormalForms(VoiceoverScene):
         
         text_1 = 'Формула в булевой логике может быть записана в <span foreground="yellow">дизъюнктивной</span> и в <span foreground="yellow">конъюнктивной</span> нормальной форме.'
         text_2 = 'Также выделяют совершенную дизъюнктивную и совершенную конъюктивную нормальную форму.'
-        text_1 = make_text(text_1, font_size=24, width_from=None)
-        text_2 = make_text(text_2, font_size=24, width_from=text_1)
+        text_1 = MarkupText(text_1, width=12, font_size=65)
+        text_2 = MarkupText(text_2, width=12, font_size=65)
 
         text_1.next_to(title_1, DOWN, buff=1.0)
         text_2.next_to(text_1, DOWN)
+
+        # self.add(title_1, text_1, text_2)
+        # return
 
         self.wait()
         
@@ -92,120 +84,6 @@ class FunctionNormalForms(VoiceoverScene):
         self.wait()
         self.play(FadeOut(title_1, text_1, text_2))
         self.wait()
-        self.wait()
-
-
-class DisjunctiveNormalForm(VoiceoverScene):
-    def construct(self):
-        self.set_speech_service(GTTSService(lang='ru'))
-        title_1 = Title('Дизъюнктивная нормальная форма', tex_template=MY_TEMPLATE)
-        
-        text_1 = 'Дизъюнктивная нормальная форма (ДНФ) в булевой логике — нормальная форма, в которой булева формула имеет вид дизъюнкции конъюнкций литералов. Любая булева формула может быть приведена к ДНФ.'
-        text_2 = 'Для этого можно использовать <span foreground="yellow">закон двойного отрицания, закон де Моргана, закон дистрибутивности.</span>'
-        text_3 = 'Дизъюнктивная нормальная форма удобна для автоматического доказательства теорем.'
-        text_1 = make_text(text_1, 24, None)
-        text_2 = make_text(text_2, 24, text_1)
-        text_3 = make_text(text_3, 24, text_1)
-
-        text_1.next_to(title_1, DOWN, buff=1.0)
-        text_2.next_to(text_1, DOWN)
-        text_3.next_to(text_2, DOWN)
-
-        example_1 = r'${A\lor B}$ \\ ${\displaystyle (A\land B)\lor {\overline {A}}}$ \\ ${\displaystyle (A\land B\land {\overline {C}})\lor ({\overline {D}}\land E\land F)\lor (C\land D)\lor B}$'
-        example_1 = Tex(example_1)
-
-        self.wait()
-        with self.voiceover(text="DNF") as tracker:
-            self.play(FadeIn(title_1))
-        
-        self.wait()
-        
-        with self.voiceover(text="text_1") as tracker:
-            self.play(AddTextLetterByLetter(text_1, run_time=6))
-        self.wait()
-        
-        with self.voiceover(text="text_2") as tracker:
-            self.play(AddTextLetterByLetter(text_2, run_time=2))
-        self.wait()
-        
-        with self.voiceover(text="text_3") as tracker:
-            self.play(AddTextLetterByLetter(text_3, run_time=2))
-        self.wait()
-        
-        self.play(FadeOut(text_1, text_2, text_3, title_1))
-        
-        title_1 = Title('Примеры ДНФ', tex_template=MY_TEMPLATE)
-        with self.voiceover(text="PRIM DNF") as tracker:
-            self.play(FadeIn(title_1, example_1))
-        self.wait()
-        self.play(FadeOut(title_1, example_1))
-        
-        title_1 = Title('Построение ДНФ', tex_template=MY_TEMPLATE)
-        text_1 = make_text('Избавиться от всех логических операций, содержащихся в формуле, заменив их основными: конъюнкцией, дизъюнкцией, отрицанием. Это можно сделать, используя равносильные формулы:', 24)
-        text_1.next_to(title_1, DOWN, buff=1.0)
-        example_1 = Tex(r'${A\rightarrow B=\neg A\vee B}$ \\ ${A\leftrightarrow B=(A\wedge B)\vee (\neg A\wedge \neg B)}$')
-        example_1.next_to(text_1, DOWN, buff=0.8)
-
-        self.play(FadeIn(title_1))
-        self.play(AddTextLetterByLetter(text_1, run_time=6.0))
-        self.wait()
-        self.play(Write(example_1))
-        self.wait()
-        self.play(FadeOut(text_1))
-        example_2 = Tex(r'${\neg (A\vee B)=\neg A\wedge \neg B}$ \\ ${\neg (A\wedge B)=\neg A\vee \neg B}$')
-        example_2.next_to(example_1, UP)
-        self.play(Write(example_2))
-        self.wait()
-
-        self.play(FadeOut(title_1, example_1, example_2))
-        
-        title_1 = Title('Пример построения ДНФ', tex_template=MY_TEMPLATE)
-        text_1 = make_text('Приведем к ДНФ формулу', 24)
-        text_1.next_to(title_1, DOWN, buff=1.0)
-        
-        func_1 = Tex(r'${\displaystyle F=\neg ((X\rightarrow Y)\vee \neg (Y\rightarrow Z))}$')
-        func_2 = Tex(r'1) ${\displaystyle F=\neg ((\neg X\vee Y)\vee \neg (\neg Y\vee Z))}$')
-        func_3 = Tex(r'2) ${\displaystyle F=(\neg \neg X\wedge \neg Y)\wedge (\neg Y\vee Z)=(X\wedge \neg Y)\wedge (\neg Y\vee Z)}$')
-        func_4 = Tex(r'3) ${\displaystyle F=(X\wedge \neg Y\wedge \neg Y)\vee (X\wedge \neg Y\wedge Z)}$')
-        
-        VGroup(func_1, func_2, func_3, func_4).arrange(DOWN).next_to(text_1, DOWN)
-
-        self.play(FadeIn(title_1))
-        self.play(AddTextLetterByLetter(text_1))
-        self.play(Write(func_1))
-        self.wait()
-        self.play(FadeOut(text_1))
-        self.wait()
-        self.play(Write(func_2))
-        self.wait()
-        self.play(Write(func_3))
-        self.wait()
-        self.play(Write(func_4))
-        self.wait()
-        self.play(FadeOut(title_1, func_1, func_2, func_3, func_4))
-        self.wait()
-        
-        title_1 = Title('Совершенная дизъюнктивная нормальная форма', tex_template=MY_TEMPLATE)
-        text_1 = make_text('(СДНФ) — одна из форм представления функции алгебры логики (булевой функции) в виде логического выражения. Представляет собой частный случай ДНФ, удовлетворяющий следующим трём условиям: ', font_size=20)
-        text_2 = make_text('1) В ней нет одинаковых слагаемых (элементарных конъюнкций);', font_size=20)
-        text_3 = make_text('2) В каждом слагаемом нет повторяющихся переменных;', font_size=20)
-        text_4 = make_text('3) Каждое слагаемое содержит все переменные, от которых зависит булева функция (каждая переменная может входить в слагаемое либо в прямой, либо в инверсной форме).', font_size=20)
-        VGroup(text_1, text_2, text_3, text_4).arrange(DOWN).next_to(title_1, DOWN, buff=1.0)
-
-        self.play(FadeIn(title_1))
-        self.play(AddTextLetterByLetter(text_1, run_time=6.0))
-        self.play(Write(text_2, run_time=2.0))
-        self.play(Write(text_3, run_time=2.0))
-        self.play(Write(text_4, run_time=5.0))
-        self.wait()
-        self.play(FadeOut(title_1, text_1, text_2, text_3, text_4))
-
-        title_1 = Title('Переход от ДНФ к СДНФ', tex_template=MY_TEMPLATE)
-        transition_1 = Tex(r'${X\vee \neg Y\neg Z=X(Y\vee \neg Y)(Z\vee \neg Z)\vee (X\vee \neg X)\neg Y\neg Z=}$ \\ ${XYZ\vee X\neg YZ\vee XY\neg Z\vee X\neg Y\neg Z\vee X\neg Y\neg Z\vee \neg X\neg Y\neg Z=}$ \\ ${=XYZ\vee X\neg YZ\vee XY\neg Z\vee X\neg Y\neg Z\vee \neg X\neg Y\neg Z}$')
-        transition_1.next_to(title_1, DOWN, buff=1.0)
-        self.play(FadeIn(title_1))
-        self.wait()
-        self.play(Write(transition_1, run_time=8.0))
         self.wait()
 
 
@@ -429,10 +307,9 @@ class KarnaughMapM4(VoiceoverScene):
             line_config={'stroke_width': 1},
         )
         
-        # self.add(karnaugh_map_2)
 
-        karnaugh_map_2.scale(0.5)
-        Group(table, karnaugh_map).scale(0.5).arrange_in_grid(buff=1)
+        table.scale(0.5)
+        Group(table, karnaugh_map).arrange_in_grid(buff=1)
         
         self.wait()
         with self.voiceover(text="KARNO_CONSTRUCT_M=4") as tracker:
@@ -480,42 +357,6 @@ class KarnaughMapM4(VoiceoverScene):
         
         self.play(FadeOut(title_1, karnaugh_map, table))
         # Новый фрагмент
-
-        # title_1 = Title('Составление СДНФ. Алгебраический метод', tex_template=MY_TEMPLATE)
-        # text_1 = Tex(r"${\bar X_{1} X_{2} \bar X_{3} \bar X_{4} \lor \bar X_{1} X_{2} \bar X_{3} X_{4}}$ \\ ${\lor \bar X_{1} X_{2} X_{3} \bar X_{4} \lor \bar X_{1} X_{2} X_{3} X_{4}}$ \\ ${\lor X_{1} \bar X_{2} \bar X_{3} X_{4} \lor X_{1} \bar X_{2} X_{3} X_{4}}$ \\ $\lor {X_{1} X_{2} X_{3} \bar X_{4} \lor X_{1} X_{2} X_{3} X_{4}}$")
-        
-
-
-        # self.play(FadeIn(title_1))
-        # self.wait()
-        # self.play(table.animate.shift(LEFT))
-        
-        # text_1.next_to(table, RIGHT)
-        # self.wait()
-
-
-        # gr = []
-        # rows = table.get_rows()[1:]
-        # for i, temp in enumerate(function_result):
-        #     if temp == 1:
-        #         if function_result[i - 1] == 0:
-        #             gr.append( rows[i][1:] )
-        #         else:
-        #             gr[-1] = VGroup(gr[-1], rows[i][1:])
-
-        # boxes = [SurroundingRectangle(g, corner_radius=0.2) for g in gr]
-
-        # boxes = VGroup(*boxes)
-
-        # self.play(Create(boxes))
-        # self.wait()
-        # self.play(Write(text_1))
-        # self.wait()
-        # self.play(FadeOut(boxes, table))
-        # self.wait()
-        # self.play(text_1.animate.move_to(Point()))
-        # self.wait()
-        # self.play(FadeOut(title_1, text_1))
 
         title_1 = Title('Составление СДНФ. Карта Карно', tex_template=MY_TEMPLATE)
         with self.voiceover(text="SDNF_M=4_KARNO") as tracker:
