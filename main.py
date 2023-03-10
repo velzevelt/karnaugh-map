@@ -258,8 +258,8 @@ class KarnaughMapM4(VoiceoverScene):
             top_left_entry=Tex('N'),
             col_labels=[Tex('$X_{1}$'), Tex('$X_{2}$'), Tex('$X_{3}$'), Tex('$X_{4}$'), Tex('F')],
             row_labels=[MathTex(str(i)) for i in range(column_size)],
-            v_buff=0.2,
-            h_buff=0.3,
+            v_buff=0.1,
+            h_buff=0.1,
             line_config={'stroke_width': 1}
             )
         
@@ -308,9 +308,13 @@ class KarnaughMapM4(VoiceoverScene):
         )
         
 
-        table.scale(0.5)
+        table.scale(0.85)
+        table.shift(np.array((0.0, -0.6, 0.0)))
         Group(table, karnaugh_map).arrange_in_grid(buff=1)
         
+        # self.add(title_1, table, karnaugh_map)
+        # return
+
         self.wait()
         with self.voiceover(text="KARNO_CONSTRUCT_M=4") as tracker:
             self.play(FadeIn(title_1))
@@ -363,7 +367,6 @@ class KarnaughMapM4(VoiceoverScene):
             self.play(FadeIn(title_1))
         self.wait()
 
-        karnaugh_map_2.scale(2.0)
         karnaugh_map_2.next_to(title_1, DOWN, buff=0.6)
 
         self.play(karnaugh_map_2.create())
